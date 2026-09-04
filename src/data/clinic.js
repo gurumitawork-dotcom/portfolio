@@ -5,40 +5,73 @@
  * Portraits: src/assets/images/doctor/*.webp (nav, portrait, clinic, heart, meet, hero, banner).
  */
 import { FOCUS_AREAS, CURRENT_ROLES, OFFICE, STATS } from "./profile.js";
+import {
+  serviceCoronary,
+  serviceAmputation,
+  servicePeripheral,
+  serviceTeaching,
+} from "../assets/images/index.js";
 
 export const CLINIC_PHONE_HREF = `tel:+1${OFFICE.phone.replace(/\D/g, "")}`;
 
 export const CLINIC_SERVICES = [
   {
     id: "coronary",
-    title: FOCUS_AREAS[0].title,
+    title: "Complex coronary intervention",
+    category: "Interventional Cardiology",
+    badge: "High-Volume PCI",
+    image: serviceCoronary,
+    imageAlt: "Digital fluoroscopy and 3D imaging in cardiac catheterization laboratory",
     summary:
       "CTO recanalization, left main and multivessel PCI, lithotripsy, atherectomy, and imaging-guided intervention.",
     items: FOCUS_AREAS[0].items,
-    note: null,
+    tags: ["CTO Recanalization", "Lithotripsy", "Left Main PCI", "Atherectomy", "IVUS / OCT"],
+    note: "High-volume complex coronary revascularization performed at White River Health.",
   },
   {
     id: "amputation",
-    title: FOCUS_AREAS[1].title,
-    summary: FOCUS_AREAS[1].text,
-    items: [],
+    title: "Amputation prevention",
+    category: "Limb Salvage Program",
+    badge: "Program Directorship",
+    image: serviceAmputation,
+    imageAlt: "Advanced vascular perfusion diagnostics and limb salvage interventional suite",
+    summary:
+      "Founded and directs White River Health's Complex Coronary and Amputation Prevention Program.",
+    items: [
+      "Multidisciplinary limb preservation protocol",
+      "Advanced pedal artery revascularization",
+      "Chronic critical limb ischemia (CLTI) management",
+      "Regional healthcare provider educational outreach",
+    ],
+    tags: ["Limb Salvage", "Pedal Revascularization", "Critical Limb Ischemia", "Wound Care"],
     note: FOCUS_AREAS[1].note,
   },
   {
     id: "peripheral",
-    title: FOCUS_AREAS[2].title,
-    summary: "Lower-extremity arterial disease, carotid and subclavian intervention, and venous thromboembolism care.",
+    title: "Peripheral & venous intervention",
+    category: "Endovascular Care",
+    badge: "Yale Fellowship Trained",
+    image: servicePeripheral,
+    imageAlt: "Peripheral endovascular suite with fluoroscopy and arterial imaging",
+    summary:
+      "Lower-extremity arterial disease, carotid and subclavian intervention, and venous thromboembolism care.",
     items: FOCUS_AREAS[2].items,
+    tags: ["Peripheral Arterial Disease", "Carotid Stenting", "Subclavian Care", "Venous Thromboembolism"],
     note: FOCUS_AREAS[2].note,
   },
   {
     id: "teaching",
     title: "Teaching & faculty",
+    category: "Academic Faculty",
+    badge: "UAMS & Residency",
+    image: serviceTeaching,
+    imageAlt: "Clinical case review and cardiology residency faculty teaching",
     summary:
       "Residency faculty at White River Health, Assistant Professor at UAMS, and national case-based teaching at CRT, CTO, and CVI.",
     items: CURRENT_ROLES.filter((r) => /professor|faculty/i.test(r.title)).map(
       (r) => `${r.title}, ${r.org}`
     ),
+    tags: ["UAMS Assistant Professor", "Residency Faculty", "CRT / CTO / CVI", "CIMS Research Group"],
     note: "Founder of the CIMS research group at Creighton.",
   },
 ];

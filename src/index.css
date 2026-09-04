@@ -87,10 +87,10 @@
     background: radial-gradient(circle at 35% 65%, rgba(254, 235, 238, 0.45) 0%, rgba(255, 255, 255, 0) 60%), #ffffff;
   }
   .home-hero-stage {
-    @apply relative grid grid-cols-1 items-stretch lg:grid-cols-[46%_54%] xl:grid-cols-[46%_54%];
+    @apply relative grid grid-cols-1 items-stretch lg:grid-cols-[43%_57%] xl:grid-cols-[41%_59%];
   }
   .home-hero-copy {
-    @apply relative z-10 flex min-w-0 flex-col justify-center p-6 sm:p-8 lg:py-8 lg:pl-10 lg:pr-3 xl:py-9 xl:pl-12 xl:pr-4;
+    @apply relative z-10 flex min-w-0 flex-col justify-center p-6 sm:p-8 lg:py-7 lg:pl-9 lg:pr-3 xl:py-8 xl:pl-11 xl:pr-4;
   }
   .home-hero-badge {
     @apply inline-flex items-center gap-2 rounded-full border border-[#f8c4cc] bg-[#fff5f6] px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-crimson-700 w-fit;
@@ -133,14 +133,13 @@
   }
 
   .home-hero-visual {
-    @apply relative flex min-h-[380px] flex-col justify-end overflow-hidden sm:min-h-[440px] md:min-h-[480px] lg:min-h-[510px] xl:min-h-[530px];
+    @apply relative flex min-h-[380px] flex-col justify-end overflow-hidden sm:min-h-[440px] md:min-h-[480px] lg:min-h-[500px] xl:min-h-[520px];
   }
   .home-hero-vector-layer {
     @apply pointer-events-none absolute inset-0 z-0 hidden h-full w-full md:block;
   }
   .home-hero-image {
-    @apply relative z-[1] h-full w-full overflow-hidden flex items-end justify-end;
-    background: linear-gradient(180deg, #907967 0%, #9f8d7b 100%);
+    @apply relative z-[1] h-full w-full overflow-hidden;
   }
   @media (min-width: 768px) {
     .home-hero-image {
@@ -149,7 +148,7 @@
     }
   }
   .home-hero-image img {
-    @apply h-full w-full object-cover object-[center_6%] md:object-contain md:object-right-bottom;
+    @apply h-full w-full object-cover object-[center_6%] md:object-[74%_100%];
   }
   .home-hero-values-band {
     @apply relative z-20 w-full border-t border-[#eedede]/70 bg-gradient-to-r from-[#ffffff] via-[#fffdfd] to-[#faf8f7];
