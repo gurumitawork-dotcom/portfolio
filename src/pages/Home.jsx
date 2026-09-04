@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import {
   ArrowRight,
   Activity,
-  BadgeCheck,
   Building2,
   CalendarDays,
   Cross,
+  FileBadge,
   Footprints,
   GraduationCap,
   Heart,
@@ -18,19 +18,19 @@ import {
 import Reveal from "../components/ui/Reveal.jsx";
 import StatBand from "../components/clinic/StatBand.jsx";
 import CommitmentGrid from "../components/clinic/CommitmentGrid.jsx";
+import PracticeHighlight from "../components/clinic/PracticeHighlight.jsx";
 import {
   CLINIC_PHONE_HREF,
   DOCTOR_SPOTLIGHT,
   HERO_COPY,
   HERO_CREDENTIALS,
-  FEATURED_HIGHLIGHT,
   CLINIC_SERVICES,
 } from "../data/clinic.js";
 import { OFFICE, CURRENT_ROLES } from "../data/profile.js";
 import { maheshHero, maheshMeet } from "../assets/images/index.js";
 
 const SERVICE_ICONS = [Activity, Footprints, Route, GraduationCap];
-const HERO_ROLE_ICONS = [Building2, Shield, GraduationCap, Users, BadgeCheck];
+const HERO_ROLE_ICONS = [Building2, Shield, GraduationCap, Users, FileBadge];
 
 const HERO_VALUES = [
   { icon: Heart, title: "Patient First", body: "Compassionate, personalized heart care." },
@@ -39,64 +39,117 @@ const HERO_VALUES = [
   { icon: MapPin, title: "Serving Batesville", body: "Proud to serve our community." },
 ];
 
+function formatCredential(line) {
+  if (line.startsWith("Board certified:")) {
+    const certs = line.replace("Board certified:", "").trim();
+    return (
+      <div className="home-hero-role-text">
+        <span className="home-hero-role-title">Board certified:</span>
+        <span className="home-hero-role-sub">{certs}</span>
+      </div>
+    );
+  }
+  const dashIndex = line.indexOf(" — ");
+  if (dashIndex !== -1) {
+    const title = line.slice(0, dashIndex + 3);
+    const org = line.slice(dashIndex + 3);
+    return (
+      <div className="home-hero-role-text">
+        <span className="home-hero-role-title">{title}</span>
+        <span className="home-hero-role-sub">{org}</span>
+      </div>
+    );
+  }
+  return (
+    <div className="home-hero-role-text">
+      <span className="home-hero-role-title">{line}</span>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <>
       <section className="home-hero">
         <div className="home-hero-card">
           <div className="home-hero-stage">
-          <Reveal immediate className="home-hero-copy">
-            <p className="home-hero-badge">
-              <Heart size={13} fill="currentColor" /> Heart care. Compassionate care.
-            </p>
-            <h1>
-              Mahesh Anantha
-              <br />
-              Narayanan
-            </h1>
-            <p className="home-hero-credentials">{DOCTOR_SPOTLIGHT.credentials}</p>
-            <ul className="home-hero-roles">
-              {HERO_CREDENTIALS.map((line, index) => {
-                const Icon = HERO_ROLE_ICONS[index];
-                return (
-                  <li key={line}>
-                    <span className="home-hero-role-icon">
-                      <Icon size={15} strokeWidth={2} />
-                    </span>
-                    <span>{line}</span>
-                  </li>
-                );
-              })}
-            </ul>
-            <p className="home-hero-lede">{HERO_COPY.lede}</p>
-            <div className="home-hero-actions">
-              <a href={CLINIC_PHONE_HREF} className="btn-primary">
-                <CalendarDays size={17} /> Book Appointment <ArrowRight size={16} />
-              </a>
-              <Link to="/services" className="btn-outline">
-                <HeartHandshake size={17} /> Our Services <ArrowRight size={16} />
-              </Link>
-            </div>
-          </Reveal>
+            <Reveal immediate className="home-hero-copy">
+              <p className="home-hero-badge">
+                <Heart size={13} className="text-crimson-600" /> Heart care. Compassionate care.
+              </p>
+              <h1>
+                Mahesh Anantha
+                <br />
+                Narayanan
+              </h1>
+              <p className="home-hero-credentials">{DOCTOR_SPOTLIGHT.credentials}</p>
+              <ul className="home-hero-roles">
+                {HERO_CREDENTIALS.map((line, index) => {
+                  const Icon = HERO_ROLE_ICONS[index] || HERO_ROLE_ICONS[0];
+                  return (
+                    <li key={line}>
+                      <span className="home-hero-role-icon">
+                        <Icon size={15} strokeWidth={2} />
+                      </span>
+                      {formatCredential(line)}
+                    </li>
+                  );
+                })}
+              </ul>
+              <p className="home-hero-lede">{HERO_COPY.lede}</p>
+              <div className="home-hero-actions">
+                <a href={CLINIC_PHONE_HREF} className="btn-primary">
+                  <CalendarDays size={16} /> Book Appointment <ArrowRight size={15} />
+                </a>
+                <Link to="/services" className="btn-outline">
+                  <HeartHandshake size={16} /> Our Services <ArrowRight size={15} />
+                </Link>
+              </div>
+            </Reveal>
 
-          <Reveal immediate delay={0.08} className="home-hero-visual">
-            <div className="home-hero-shape" aria-hidden="true" />
-            <div className="home-hero-image">
-              <img
-                src={maheshHero}
-                alt="Mahesh Anantha Narayanan holding an anatomical heart model"
-              />
-            </div>
-            <div className="home-hero-values">
-              {HERO_VALUES.map(({ icon: Icon, title, body }) => (
-                <div className="home-hero-value" key={title}>
-                  <Icon size={24} strokeWidth={1.7} />
-                  <h2>{title}</h2>
-                  <p>{body}</p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
+            <Reveal immediate delay={0.08} className="home-hero-visual">
+              <svg
+                className="home-hero-vector-layer"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <defs>
+                  <clipPath id="heroDoctorMask" clipPathUnits="objectBoundingBox">
+                    <path d="M 0.10 0 C 0.04 0.22, 0.01 0.42, 0.02 0.55 C 0.03 0.68, 0.07 0.84, 0.13 1.0 L 1.0 1.0 L 1.0 0 Z" />
+                  </clipPath>
+                </defs>
+                {/* Crimson sweeping organic arc framing the doctor */}
+                <path
+                  d="M 0.04 0 C -0.02 0.22, -0.06 0.42, -0.05 0.55 C -0.04 0.68, 0.00 0.84, 0.07 1.0 L 0.14 1.0 C 0.08 0.84, 0.04 0.68, 0.03 0.55 C 0.02 0.42, 0.05 0.22, 0.11 0 Z"
+                  fill="#9E2A2B"
+                />
+                {/* Bottom-right corner crimson accent */}
+                <path
+                  d="M 0.88 1.0 C 0.93 0.92, 0.96 0.88, 1.0 0.86 L 1.0 1.0 Z"
+                  fill="#9E2A2B"
+                />
+              </svg>
+
+              <div className="home-hero-image">
+                <img
+                  src={maheshHero}
+                  alt="Mahesh Anantha Narayanan holding an anatomical heart model"
+                />
+              </div>
+
+              <div className="home-hero-values">
+                {HERO_VALUES.map(({ icon: Icon, title, body }) => (
+                  <div className="home-hero-value" key={title}>
+                    <div className="home-hero-value-icon">
+                      <Icon size={16} strokeWidth={2} />
+                    </div>
+                    <h2>{title}</h2>
+                    <p>{body}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -105,22 +158,7 @@ export default function Home() {
 
       <CommitmentGrid />
 
-      <section className="relative overflow-hidden bg-navy-950 py-14 sm:py-16">
-        <div className="container-lg grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr]">
-          <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-crimson-400">{FEATURED_HIGHLIGHT.eyebrow}</p>
-            <h2 className="mt-3 text-3xl font-semibold text-white sm:text-4xl">{FEATURED_HIGHLIGHT.title}</h2>
-            <p className="mt-4 max-w-2xl text-sm leading-relaxed text-slate-300 sm:text-base">{FEATURED_HIGHLIGHT.body}</p>
-            <Link to={FEATURED_HIGHLIGHT.cta.to} className="btn-primary mt-7">
-              {FEATURED_HIGHLIGHT.cta.label} <ArrowRight size={16} />
-            </Link>
-          </Reveal>
-          <Reveal delay={0.08} className="hidden text-right lg:block">
-            <p className="text-6xl font-semibold text-white/10">1,000+</p>
-            <p className="mt-2 text-sm text-slate-400">cases a year since 2021</p>
-          </Reveal>
-        </div>
-      </section>
+      <PracticeHighlight />
 
       <section className="section section-tint-a">
         <div className="container-lg">
