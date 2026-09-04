@@ -415,271 +415,222 @@ export default function CommitmentGrid({ eyebrow = "Commitment to better heart h
           })}
         </div>
 
-        {/* REDESIGNED: Bespoke Clinical Protocol Dossier Console */}
-        <Reveal delay={0.2} className="mt-10">
-          <div className="relative overflow-hidden rounded-[26px] sm:rounded-[32px] border-2 border-[#eedede] bg-[#ffffff] shadow-[0_24px_60px_-18px_rgba(20,35,60,0.14)]">
-            {/* Architectural Ambient Lighting & Medical Blueprint Glow */}
-            <div className="pointer-events-none absolute -top-24 right-0 h-72 w-72 rounded-full bg-crimson-100/40 blur-3xl" />
-            <div className="pointer-events-none absolute bottom-0 left-0 h-72 w-72 rounded-full bg-rose-50/50 blur-3xl" />
-
-            {/* Dossier Top Bar: Header & Interactive 4-Station Protocol Selector */}
-            <div className="relative z-10 border-b border-[#eedede]/80 bg-[#fdfbfb] px-5 py-4 sm:px-8 sm:py-5">
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                {/* Station Identity */}
-                <div className="flex items-center gap-3">
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-crimson-600 text-white shadow-sm shadow-crimson-600/30">
-                    <Stethoscope size={18} strokeWidth={2.25} />
-                  </span>
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-slate-800">
-                        Clinical Protocol Dossier
-                      </span>
-                      <span className="inline-flex items-center gap-1 rounded-full bg-crimson-50 border border-crimson-200 px-2 py-0.5 text-[10px] font-bold text-crimson-700">
-                        <span className="h-1.5 w-1.5 rounded-full bg-crimson-600 animate-ping" />
-                        Interactive Deep-Dive
-                      </span>
-                    </div>
-                    <p className="text-[11.5px] text-slate-500">
-                      Select a clinical station below to examine technical modalities and surgical coordination.
-                    </p>
-                  </div>
-                </div>
-
-                {/* 4 Architectural Tab Stations */}
-                <div className="grid grid-cols-2 gap-1.5 sm:flex sm:items-center sm:gap-2">
-                  {PILLARS_DATA.map((pillar) => {
-                    const isSelected = pillar.id === activePillar.id;
-                    const TabIcon = pillar.icon;
-
-                    return (
-                      <button
-                        key={pillar.id}
-                        type="button"
-                        onClick={() => setActiveId(pillar.id)}
-                        className={`group relative flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left transition-all duration-200 sm:px-4 sm:py-2.5 ${
-                          isSelected
-                            ? "bg-[#14233c] text-white shadow-md shadow-navy-950/20 ring-1 ring-white/20"
-                            : "bg-white border border-slate-200/80 text-slate-700 hover:border-crimson-300 hover:bg-[#fff9fa]"
-                        }`}
-                      >
-                        {/* Number Index */}
-                        <span
-                          className={`font-mono text-[12px] font-extrabold tracking-tight ${
-                            isSelected ? "text-crimson-400" : "text-slate-400 group-hover:text-crimson-700"
-                          }`}
-                        >
-                          {pillar.index}
-                        </span>
-
-                        {/* Title & Category */}
-                        <div className="flex flex-col min-w-0">
-                          <span
-                            className={`text-[12px] font-bold tracking-tight leading-tight ${
-                              isSelected ? "text-white" : "text-slate-800 group-hover:text-crimson-800"
-                            }`}
-                          >
-                            {pillar.shortName}
-                          </span>
-                          <span
-                            className={`text-[9.5px] font-medium tracking-tight hidden sm:block ${
-                              isSelected ? "text-slate-300" : "text-slate-400"
-                            }`}
-                          >
-                            {pillar.badge}
-                          </span>
-                        </div>
-
-                        {/* Active Micro-Dot */}
-                        {isSelected && (
-                          <span className="ml-auto hidden xl:block h-1.5 w-1.5 rounded-full bg-crimson-400" />
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
+        {/* REDESIGNED: Clinical Protocol Dossier Merged Directly With Background */}
+        <Reveal delay={0.15} className="mt-14 pt-10 border-t border-[#eedede]/80">
+          {/* Header Bar: Open & Merged Directly With Section Background */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-[#eedede]/70">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-crimson-600 text-white shadow-xs">
+                  <Stethoscope size={15} strokeWidth={2.2} />
+                </span>
+                <span className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-slate-800">
+                  Clinical Protocol Dossier
+                </span>
+                <span className="inline-flex items-center gap-1 rounded-full bg-crimson-50 border border-crimson-200 px-2 py-0.5 text-[10px] font-bold text-crimson-700">
+                  <span className="h-1.5 w-1.5 rounded-full bg-crimson-600 animate-ping" />
+                  Interactive Deep-Dive
+                </span>
               </div>
+              <p className="mt-1 text-[12.5px] text-slate-500">
+                Direct evidence, technical modalities, and institutional directorship for Pillar 0{activePillar.index}.
+              </p>
             </div>
 
-            {/* Dossier Body: Asymmetric Clinical Architecture */}
-            <div className="relative z-10 p-6 sm:p-8 lg:p-10">
-              <div className="grid grid-cols-1 lg:grid-cols-[1.22fr_0.9fr] gap-8 xl:gap-10 items-stretch">
-                
-                {/* Left Side: Clinical Protocol Details & Modalities Matrix */}
-                <div className="flex flex-col justify-between">
-                  <div>
-                    {/* Active Pillar Pill */}
-                    <div className="inline-flex items-center gap-2 rounded-full border border-crimson-200/90 bg-crimson-50 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-crimson-700 shadow-xs">
-                      <span className="flex h-1.5 w-1.5 rounded-full bg-crimson-600" />
-                      <span>Pillar {activePillar.index} · {activePillar.badge}</span>
-                    </div>
-
-                    {/* Headline */}
-                    <h3 className="mt-3.5 font-sans text-2xl font-extrabold tracking-tight text-[#14233c] sm:text-3xl lg:text-[2rem] leading-snug">
-                      {activePillar.deepDive.headline}
-                    </h3>
-
-                    {/* Core Description */}
-                    <p className="mt-3 text-[14px] leading-relaxed text-slate-600 sm:text-[14.5px]">
-                      {activePillar.deepDive.description}
-                    </p>
-
-                    {/* Protocol Matrix Section */}
-                    <div className="mt-7">
-                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                        <span className="text-[11.5px] font-extrabold uppercase tracking-[0.16em] text-slate-700">
-                          Key Technical Modalities & Protocols:
-                        </span>
-                        <span className="text-[11px] font-medium text-slate-400">
-                          3 Standardized Clinical Stages
-                        </span>
-                      </div>
-
-                      {/* 3 Distinctive Medical Protocol Modules */}
-                      <div className="mt-3.5 space-y-3">
-                        {activePillar.deepDive.protocols.map((proto) => (
-                          <div
-                            key={proto.num}
-                            className="group relative flex items-start gap-3.5 rounded-2xl border border-[#eedede]/70 bg-gradient-to-r from-white to-[#fffcfc] p-4 transition-all duration-200 hover:border-crimson-200 hover:shadow-sm"
-                          >
-                            {/* Protocol Step Badge */}
-                            <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-[#fff0f2] text-[11px] font-black text-crimson-700 border border-crimson-100 group-hover:bg-crimson-600 group-hover:text-white transition-colors">
-                              {proto.num}
-                            </span>
-
-                            <div className="min-w-0 flex-1">
-                              <div className="flex flex-wrap items-center justify-between gap-1.5">
-                                <h4 className="text-[13.5px] font-bold leading-snug text-[#14233c] group-hover:text-crimson-800 transition-colors">
-                                  {proto.title}
-                                </h4>
-                                <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-600">
-                                  {proto.badge}
-                                </span>
-                              </div>
-                              <p className="mt-1 text-[12.5px] leading-relaxed text-slate-600">
-                                {proto.detail}
-                              </p>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Active Pillar Tag Bar */}
-                  <div className="mt-6 flex flex-wrap items-center gap-2 pt-4 border-t border-slate-100">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                      Focus Areas:
+            {/* Seamless Station Switcher Pills */}
+            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-200/50">
+              {PILLARS_DATA.map((pillar) => {
+                const isSelected = pillar.id === activePillar.id;
+                return (
+                  <button
+                    key={pillar.id}
+                    type="button"
+                    onClick={() => setActiveId(pillar.id)}
+                    className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-[12px] font-semibold transition-all ${
+                      isSelected
+                        ? "bg-white text-[#14233c] shadow-xs font-bold ring-1 ring-black/5"
+                        : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
+                    }`}
+                  >
+                    <span className={`text-[11px] font-mono font-bold ${isSelected ? "text-crimson-600" : "text-slate-400"}`}>
+                      {pillar.index}
                     </span>
-                    {activePillar.procedures.map((proc) => (
-                      <span
-                        key={proc}
-                        className="rounded-lg bg-slate-50 border border-slate-200/80 px-2.5 py-1 text-[11.5px] font-medium text-slate-700"
-                      >
-                        {proc}
-                      </span>
-                    ))}
-                  </div>
+                    <span>{pillar.shortName}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Dossier Body: Merged With Background */}
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1.25fr_0.85fr] gap-8 xl:gap-12 items-start">
+            {/* Left Side: Clinical Protocol Details & Modalities */}
+            <div>
+              {/* Active Pillar Pill */}
+              <div className="inline-flex items-center gap-2 rounded-full border border-crimson-200/90 bg-crimson-50 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-crimson-700">
+                <span className="flex h-1.5 w-1.5 rounded-full bg-crimson-600" />
+                <span>Pillar {activePillar.index} · {activePillar.badge}</span>
+              </div>
+
+              {/* Headline */}
+              <h3 className="mt-3.5 font-sans text-2xl font-extrabold tracking-tight text-[#14233c] sm:text-3xl lg:text-[2.15rem] leading-snug">
+                {activePillar.deepDive.headline}
+              </h3>
+
+              {/* Core Description */}
+              <p className="mt-3 text-[14px] leading-relaxed text-slate-600 sm:text-[14.5px]">
+                {activePillar.deepDive.description}
+              </p>
+
+              {/* Protocol Matrix Section */}
+              <div className="mt-7">
+                <div className="flex items-center justify-between pb-2 border-b border-[#eedede]/70">
+                  <span className="text-[11.5px] font-extrabold uppercase tracking-[0.16em] text-slate-700">
+                    Key Technical Modalities & Protocols:
+                  </span>
+                  <span className="text-[11px] font-medium text-slate-400">
+                    3 Standardized Clinical Stages
+                  </span>
                 </div>
 
-                {/* Right Side: Institutional Grounding & Action Console */}
-                <div className="flex flex-col justify-between rounded-[22px] border border-[#eedede] bg-[#fbf9f8] p-6 sm:p-7 shadow-sm">
-                  <div>
-                    {/* Header with Official Shield */}
-                    <div className="flex items-center justify-between pb-3 border-b border-slate-200/70">
-                      <span className="flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[0.16em] text-crimson-700">
-                        <ShieldCheck size={14} className="text-crimson-600" />
-                        CV Institutional Grounding
+                {/* Protocol modules merged smoothly with the background */}
+                <div className="mt-3.5 space-y-2.5">
+                  {activePillar.deepDive.protocols.map((proto) => (
+                    <div
+                      key={proto.num}
+                      className="group flex items-start gap-3.5 rounded-xl border border-[#eedede]/70 bg-white/75 p-3.5 sm:p-4 transition-all duration-200 hover:border-crimson-200 hover:bg-white hover:shadow-xs"
+                    >
+                      <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#fff0f2] text-[11px] font-black text-crimson-700 border border-crimson-100 group-hover:bg-crimson-600 group-hover:text-white transition-colors">
+                        {proto.num}
                       </span>
-                      <span className="rounded-full bg-white border border-[#eedede] px-2 py-0.5 text-[10px] font-semibold text-slate-600 shadow-xs">
-                        Verified CV
-                      </span>
-                    </div>
 
-                    {/* Official Appointment Card */}
-                    <div className="mt-4 rounded-2xl border border-[#eedede]/90 bg-white p-5 shadow-sm">
-                      <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                        Documented Appointment
-                      </span>
-                      <h4 className="mt-1 text-[15px] font-bold leading-snug text-[#14233c]">
-                        {activePillar.deepDive.citation}
-                      </h4>
-                      <p className="mt-1 text-[12px] font-medium text-crimson-800">
-                        {activePillar.deepDive.citationOrg}
-                      </p>
-
-                      <div className="mt-3.5 pt-3 border-t border-slate-100">
-                        <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500">
-                          Program Focus
-                        </span>
-                        <p className="mt-0.5 text-[13px] font-semibold text-slate-800">
-                          {activePillar.deepDive.subProgram}
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center justify-between gap-1.5">
+                          <h4 className="text-[13.5px] font-bold leading-snug text-[#14233c] group-hover:text-crimson-800 transition-colors">
+                            {proto.title}
+                          </h4>
+                          <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-600">
+                            {proto.badge}
+                          </span>
+                        </div>
+                        <p className="mt-1 text-[12.5px] leading-relaxed text-slate-600">
+                          {proto.detail}
                         </p>
                       </div>
                     </div>
-
-                    {/* Referral & Regional Coordination Note */}
-                    <div className="mt-4 rounded-xl bg-white/70 border border-slate-200/60 p-4">
-                      <div className="flex items-start gap-2.5">
-                        <Building2 size={16} className="text-crimson-600 mt-0.5 shrink-0" />
-                        <div>
-                          <span className="block text-[11.5px] font-bold text-slate-800">
-                            Regional Coordination & Referrals
-                          </span>
-                          <p className="mt-0.5 text-[12px] leading-relaxed text-slate-600">
-                            {activePillar.deepDive.referralNote}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Direct Clinic Information */}
-                    <div className="mt-4 space-y-1.5 text-[11.5px] text-slate-600">
-                      <p className="flex items-center gap-2">
-                        <MapPin size={13} className="text-crimson-700 shrink-0" />
-                        <span>White River Health Cardiology · 16 Hospital Circle, Batesville AR</span>
-                      </p>
-                      <p className="flex items-center gap-2">
-                        <Phone size={13} className="text-crimson-700 shrink-0" />
-                        <span>Referral Hotline: <strong className="text-slate-800">870-262-1600</strong></span>
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Twin Action Buttons */}
-                  <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                    <Link
-                      to={activePillar.ctaLink}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#9E2A2B] px-5 py-3 text-[13.5px] font-semibold text-white shadow-sm transition-all hover:bg-[#852324] hover:-translate-y-0.5 flex-1"
-                    >
-                      <span>{activePillar.ctaText}</span>
-                      <ArrowRight size={15} />
-                    </Link>
-
-                    <Link
-                      to="/contact"
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-crimson-200 bg-white px-5 py-3 text-[13.5px] font-semibold text-crimson-800 transition-all hover:bg-crimson-50 hover:-translate-y-0.5"
-                    >
-                      <span>Physician Referral</span>
-                    </Link>
-                  </div>
+                  ))}
                 </div>
+              </div>
 
+              {/* Focus Areas Chips */}
+              <div className="mt-6 flex flex-wrap items-center gap-2 pt-4 border-t border-[#eedede]/70">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  Focus Areas:
+                </span>
+                {activePillar.procedures.map((proc) => (
+                  <span
+                    key={proc}
+                    className="rounded-lg bg-white/80 border border-slate-200/80 px-2.5 py-1 text-[11.5px] font-medium text-slate-700"
+                  >
+                    {proc}
+                  </span>
+                ))}
               </div>
             </div>
 
-            {/* Dossier Bottom Verification Strip */}
-            <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 border-t border-[#eedede]/80 bg-[#fdfbfb] px-6 py-3 sm:px-8 text-[11.5px] text-slate-500">
-              <div className="flex items-center gap-2">
-                <ShieldCheck size={14} className="text-crimson-600" />
-                <span>
-                  Coronary, limb salvage, and endovascular pathways verified in clinical CV · White River Health & UAMS
+            {/* Right Side: Institutional Grounding Panel */}
+            <div className="rounded-2xl border border-[#eedede]/90 bg-white/80 backdrop-blur-xs p-6 sm:p-7 shadow-xs">
+              {/* Header with Official Shield */}
+              <div className="flex items-center justify-between pb-3 border-b border-slate-200/70">
+                <span className="flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[0.16em] text-crimson-700">
+                  <ShieldCheck size={14} className="text-crimson-600" />
+                  CV Institutional Grounding
+                </span>
+                <span className="rounded-full bg-white border border-[#eedede] px-2 py-0.5 text-[10px] font-semibold text-slate-600 shadow-xs">
+                  Verified CV
                 </span>
               </div>
-              <span className="hidden sm:inline font-mono text-[10.5px] text-slate-400 uppercase tracking-wider">
-                Protocol v2024 · Batesville, AR
+
+              {/* Official Appointment Card */}
+              <div className="mt-4 rounded-xl border border-[#eedede]/70 bg-white p-4.5 sm:p-5 shadow-xs">
+                <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
+                  Documented Appointment
+                </span>
+                <h4 className="mt-1 text-[15px] font-bold leading-snug text-[#14233c]">
+                  {activePillar.deepDive.citation}
+                </h4>
+                <p className="mt-1 text-[12px] font-medium text-crimson-800">
+                  {activePillar.deepDive.citationOrg}
+                </p>
+
+                <div className="mt-3 pt-3 border-t border-slate-100">
+                  <span className="block text-[10.5px] font-bold uppercase tracking-wider text-slate-500">
+                    Program Focus
+                  </span>
+                  <p className="mt-0.5 text-[13px] font-semibold text-slate-800">
+                    {activePillar.deepDive.subProgram}
+                  </p>
+                </div>
+              </div>
+
+              {/* Referral & Regional Coordination Note */}
+              <div className="mt-3.5 rounded-xl bg-slate-50/80 border border-slate-200/60 p-3.5">
+                <div className="flex items-start gap-2.5">
+                  <Building2 size={15} className="text-crimson-600 mt-0.5 shrink-0" />
+                  <div>
+                    <span className="block text-[11.5px] font-bold text-slate-800">
+                      Regional Coordination & Referrals
+                    </span>
+                    <p className="mt-0.5 text-[12px] leading-relaxed text-slate-600">
+                      {activePillar.deepDive.referralNote}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Direct Clinic Information */}
+              <div className="mt-3.5 space-y-1 text-[11.5px] text-slate-600">
+                <p className="flex items-center gap-2">
+                  <MapPin size={13} className="text-crimson-700 shrink-0" />
+                  <span>White River Health Cardiology · 16 Hospital Circle, Batesville AR</span>
+                </p>
+                <p className="flex items-center gap-2">
+                  <Phone size={13} className="text-crimson-700 shrink-0" />
+                  <span>Referral Hotline: <strong className="text-slate-800">870-262-1600</strong></span>
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="mt-5 pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+                <Link
+                  to={activePillar.ctaLink}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#9E2A2B] px-4 py-2.5 text-[13px] font-semibold text-white shadow-xs transition-all hover:bg-[#852324] hover:-translate-y-0.5 flex-1"
+                >
+                  <span>{activePillar.ctaText}</span>
+                  <ArrowRight size={14} />
+                </Link>
+
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-crimson-200 bg-white px-4 py-2.5 text-[13px] font-semibold text-crimson-800 transition-all hover:bg-crimson-50 hover:-translate-y-0.5"
+                >
+                  <span>Physician Referral</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Dossier Bottom Verification Baseline */}
+          <div className="mt-10 pt-4 border-t border-[#eedede]/70 flex flex-wrap items-center justify-between gap-3 text-[11.5px] text-slate-500">
+            <div className="flex items-center gap-2">
+              <ShieldCheck size={14} className="text-crimson-600" />
+              <span>
+                Coronary, limb salvage, and endovascular pathways verified in clinical CV · White River Health & UAMS
               </span>
             </div>
+            <span className="hidden sm:inline font-mono text-[10.5px] text-slate-400 uppercase tracking-wider">
+              Protocol v2024 · Batesville, AR
+            </span>
           </div>
         </Reveal>
       </div>
