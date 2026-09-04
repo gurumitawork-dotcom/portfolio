@@ -137,19 +137,24 @@ export default function Home() {
                   alt="Mahesh Anantha Narayanan holding an anatomical heart model"
                 />
               </div>
+            </Reveal>
+          </div>
 
-              <div className="home-hero-values">
-                {HERO_VALUES.map(({ icon: Icon, title, body }) => (
-                  <div className="home-hero-value" key={title}>
-                    <div className="home-hero-value-icon">
-                      <Icon size={16} strokeWidth={2} />
-                    </div>
+          {/* Integrated values band aligned across the card/screen, below the doctor's hands & heart */}
+          <div className="home-hero-values-band">
+            <div className="home-hero-values-grid">
+              {HERO_VALUES.map(({ icon: Icon, title, body }) => (
+                <div className="home-hero-value-item" key={title}>
+                  <span className="home-hero-value-icon">
+                    <Icon size={18} strokeWidth={2.2} />
+                  </span>
+                  <div className="home-hero-value-text">
                     <h2>{title}</h2>
                     <p>{body}</p>
                   </div>
-                ))}
-              </div>
-            </Reveal>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
