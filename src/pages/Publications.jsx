@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import Reveal from "../components/Reveal.jsx";
+import Reveal from "../components/ui/Reveal.jsx";
+import PageBanner from "../components/clinic/PageBanner.jsx";
 import { PUBLICATIONS, BOOK_CHAPTERS } from "../data/citations.js";
 import { renderCitation } from "../utils/text.js";
 import { TOPICS, publicationTopic, groupByYear } from "../utils/publications.js";
@@ -16,16 +17,16 @@ const IMPACT = {
 
 function ImpactSnapshot() {
   const bars = [
-    { label: "h-index — papers cited at least 17 times", value: IMPACT.h, tone: "bg-teal-700" },
-    { label: "i10-index — papers cited at least 10 times", value: IMPACT.i10, tone: "bg-teal-500" },
+    { label: "h-index — papers cited at least 17 times", value: IMPACT.h, tone: "bg-crimson-700" },
+    { label: "i10-index — papers cited at least 10 times", value: IMPACT.i10, tone: "bg-crimson-500" },
   ];
 
   return (
     <div className="glass-strong relative overflow-hidden rounded-[1.5rem]">
-      <span className="absolute inset-y-0 left-0 w-[3px] bg-teal-600" />
+      <span className="absolute inset-y-0 left-0 w-[3px] bg-crimson-600" />
       <div className="px-5 sm:px-6 py-5 sm:py-6">
         <p className="eyebrow">Google Scholar</p>
-        <p className="mt-2 font-serif text-4xl text-teal-700 leading-none">{IMPACT.h}</p>
+        <p className="mt-2 font-serif text-4xl text-crimson-700 leading-none">{IMPACT.h}</p>
         <p className="mt-1.5 text-sm font-medium text-navy-900">h-index</p>
         <p className="mt-3 text-xs text-slate-500 leading-relaxed">
           {IMPACT.citations.toLocaleString()} citations · {IMPACT.papers} papers
@@ -35,7 +36,7 @@ function ImpactSnapshot() {
             <div key={bar.label}>
               <div className="flex items-baseline justify-between gap-3 mb-1.5">
                 <span className="text-xs text-slate-600">{bar.label}</span>
-                <span className="font-serif text-base text-teal-700 tabular-nums">{bar.value}</span>
+                <span className="font-serif text-base text-crimson-700 tabular-nums">{bar.value}</span>
               </div>
               <div className="h-2 rounded-full bg-slate-200/80 overflow-hidden">
                 <div
@@ -61,7 +62,7 @@ function CitationLine({ text, query }) {
             {part.text}
           </strong>
         ) : part.match ? (
-          <mark key={i} className="bg-gold-300/60 text-navy-900 rounded px-0.5">
+          <mark key={i} className="bg-crimson-200/70 text-navy-900 rounded px-0.5">
             {part.text}
           </mark>
         ) : (
@@ -98,24 +99,15 @@ export default function Publications() {
 
   return (
     <>
-      <section className="relative pt-28 pb-10 sm:pt-40 sm:pb-14">
-        <div className="container-lg grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-center">
-          <Reveal immediate>
-            <p className="eyebrow">Scholarship</p>
-            <h1 className="mt-4 text-[2rem] sm:text-6xl font-semibold leading-[1.08] break-words">
-              Peer-reviewed
-              <br />
-              publications
-              <span className="block mt-3 text-lg sm:text-2xl font-sans font-semibold text-gradient">
-                {IMPACT.papers} papers · h-index {IMPACT.h}
-              </span>
-            </h1>
-            <p className="mt-6 max-w-xl border-l-2 border-teal-500/40 pl-4 text-slate-600 text-base sm:text-lg leading-relaxed">
-              Search the full record by topic, year, or keyword.
-            </p>
-          </Reveal>
+      <PageBanner
+        eyebrow="Scholarship"
+        title="Peer-reviewed publications"
+        lede={`${IMPACT.papers} papers · h-index ${IMPACT.h}. Search the full record by topic, year, or keyword.`}
+      />
 
-          <Reveal immediate delay={0.12}>
+      <section className="pb-4">
+        <div className="container-lg">
+          <Reveal>
             <ImpactSnapshot />
           </Reveal>
         </div>
@@ -131,7 +123,7 @@ export default function Publications() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search by keyword, journal, or year…"
-                className="w-full glass rounded-full pl-11 pr-5 py-3 text-base sm:text-sm text-navy-900 placeholder:text-slate-500 outline-none focus:border-teal-500/60 focus:bg-white transition-colors"
+                className="w-full glass rounded-full pl-11 pr-5 py-3 text-base sm:text-sm text-navy-900 placeholder:text-slate-500 outline-none focus:border-crimson-500/60 focus:bg-white transition-colors"
               />
             </div>
             <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-b border-slate-900/[0.08]">
@@ -144,7 +136,7 @@ export default function Publications() {
                     onClick={() => setTopic(name)}
                     className={`pb-2.5 text-[13px] font-medium transition-colors border-b-2 -mb-px ${
                       active
-                        ? "border-teal-700 text-navy-900"
+                        ? "border-crimson-700 text-navy-900"
                         : "border-transparent text-slate-500 hover:text-navy-900"
                     }`}
                   >
@@ -164,7 +156,7 @@ export default function Publications() {
           </Reveal>
 
           <Reveal delay={0.05} className="mt-6 glass-card relative overflow-hidden">
-            <span className="absolute inset-y-0 left-0 w-[3px] bg-teal-600" />
+            <span className="absolute inset-y-0 left-0 w-[3px] bg-crimson-600" />
             {papers.length === 0 && (
               <p className="px-5 sm:px-8 py-10 text-center text-sm text-slate-500">No results match this search.</p>
             )}
@@ -172,7 +164,7 @@ export default function Publications() {
               group.items.length === 0 ? null : (
                 <div key={group.year}>
                   <p
-                    className={`px-5 sm:px-8 py-2.5 font-serif text-lg text-teal-700 bg-slate-900/[0.03] ${
+                    className={`px-5 sm:px-8 py-2.5 font-serif text-lg text-crimson-700 bg-slate-900/[0.03] ${
                       i > 0 ? "border-t border-slate-900/[0.07]" : ""
                     }`}
                   >

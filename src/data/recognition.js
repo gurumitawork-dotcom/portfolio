@@ -105,4 +105,3 @@ export const LANGUAGES = [
 ];
 
 export const HOBBY_LIST = ["Biking", "Chess", "Field hockey"];
-export const HOBBIES = `${HOBBY_LIST.slice(0, -1).join(", ")}, and ${HOBBY_LIST.at(-1).toLowerCase()}.`;

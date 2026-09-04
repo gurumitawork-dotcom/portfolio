@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import Reveal from "../components/Reveal.jsx";
+import Reveal from "../components/ui/Reveal.jsx";
+import PageBanner from "../components/clinic/PageBanner.jsx";
 import { PRESENTATIONS } from "../data/citations.js";
 import { renderCitation } from "../utils/text.js";
 import { MEETINGS, presentationMeetings, presentationYear } from "../utils/presentations.js";
@@ -56,28 +57,29 @@ export default function Presentations() {
 
   return (
     <>
-      <section className="relative pt-28 pb-8 sm:pt-40 sm:pb-10">
+      <PageBanner
+        eyebrow="Scholarship"
+        title="Presentations"
+        lede="Choose a meeting to open its program."
+      />
+
+      <section className="pb-6">
         <div className="container-lg">
-          <Reveal immediate>
-            <p className="eyebrow">Scholarship</p>
-            <h1 className="mt-4 text-4xl sm:text-5xl font-semibold tracking-tight">Presentations</h1>
-            <p className="mt-4 max-w-lg text-slate-600 text-base sm:text-lg leading-relaxed">
-              Choose a meeting to open its program.
-            </p>
-            <div className="mt-7 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-              <p className="rounded-full flex items-baseline justify-between gap-3 px-4 py-2.5 sm:px-5 bg-teal-50 border border-teal-200/80">
+          <Reveal>
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-3">
+              <p className="flex items-baseline justify-between gap-3 rounded-full border border-crimson-200/80 bg-crimson-50 px-4 py-2.5 sm:px-5">
                 <span className="text-xs text-slate-500">Years</span>
-                <span className="font-serif text-lg text-navy-900 tabular-nums">
+                <span className="text-lg tabular-nums text-navy-900">
                   {span.first}–{span.last}
                 </span>
               </p>
-              <p className="rounded-full flex items-baseline justify-between gap-3 px-4 py-2.5 sm:px-5 bg-teal-50 border border-teal-200/80">
+              <p className="flex items-baseline justify-between gap-3 rounded-full border border-crimson-200/80 bg-crimson-50 px-4 py-2.5 sm:px-5">
                 <span className="text-xs text-slate-500">Oral &amp; poster</span>
-                <span className="font-serif text-lg text-teal-800 tabular-nums">{PRESENTATIONS.length}</span>
+                <span className="text-lg tabular-nums text-crimson-800">{PRESENTATIONS.length}</span>
               </p>
-              <p className="rounded-full flex items-baseline justify-between gap-3 px-4 py-2.5 sm:px-5 bg-teal-50 border border-teal-200/80">
+              <p className="flex items-baseline justify-between gap-3 rounded-full border border-crimson-200/80 bg-crimson-50 px-4 py-2.5 sm:px-5">
                 <span className="text-xs text-slate-500">Meetings</span>
-                <span className="font-serif text-lg text-teal-800 tabular-nums">{meetings.length}</span>
+                <span className="text-lg tabular-nums text-crimson-800">{meetings.length}</span>
               </p>
             </div>
           </Reveal>
@@ -87,7 +89,7 @@ export default function Presentations() {
       <section className="pb-20">
         <div className="container-lg">
           <div className="glass-card relative overflow-hidden grid lg:grid-cols-[12.5rem_minmax(0,1fr)]">
-            <span className="absolute inset-y-0 left-0 w-[3px] bg-teal-600 z-10" />
+            <span className="absolute inset-y-0 left-0 w-[3px] bg-crimson-600 z-10" />
             <div
               role="radiogroup"
               aria-label="Meeting"
@@ -99,7 +101,7 @@ export default function Presentations() {
                   <label
                     key={m.id}
                     className={`flex items-baseline justify-between gap-3 px-4 py-3 cursor-pointer ${
-                      on ? "bg-teal-800 text-white" : "bg-white text-navy-900 lg:hover:bg-slate-50"
+                      on ? "bg-crimson-800 text-white" : "bg-white text-navy-900 lg:hover:bg-slate-50"
                     }`}
                   >
                     <input
@@ -133,7 +135,7 @@ export default function Presentations() {
                     key={year}
                     className="grid sm:grid-cols-[4.25rem_minmax(0,1fr)] gap-2 sm:gap-5 py-5 border-b border-slate-900/[0.07] last:border-0"
                   >
-                    <p className="font-serif text-xl text-teal-800 tabular-nums">{year}</p>
+                    <p className="font-serif text-xl text-crimson-800 tabular-nums">{year}</p>
                     <ul className="space-y-4">
                       {items.map((item) => (
                         <li key={item}>

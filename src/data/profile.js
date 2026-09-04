@@ -32,18 +32,6 @@ export const OFFICE = {
   mobile: "507-319-2446",
 };
 
-/** Short home-page snapshot — not the full About essays. */
-export const HOME_ABOUT_LEAD =
-  "A high-volume interventional and endovascular practice at White River Health, paired with teaching at UAMS and a national research record.";
-
-export const HOME_ABOUT_SNAPSHOT = [
-  { label: "Practice", text: "1,000+ coronary, peripheral, and venous cases a year since 2021." },
-  { label: "Teaching", text: "Residency faculty, national case-based teaching, and founder of CIMS." },
-  { label: "Research", text: "54 peer-reviewed papers; full citation record on the profile." },
-];
-
-export const ABOUT_LABELS = ["The Practice", "Teaching & CIMS", "The Research Record"];
-
 export const PRACTICE_FACTS = {
   eyebrow: "The Practice",
   title: "White River Health, Batesville, Arkansas",

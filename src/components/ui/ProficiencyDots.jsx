@@ -5,7 +5,7 @@ export default function ProficiencyDots({ level, max = 5 }) {
         <span
           key={i}
           className={`h-1.5 w-1.5 rounded-full transition-colors ${
-            i < level ? "bg-teal-600" : "bg-slate-200"
+            i < level ? "bg-crimson-600" : "bg-slate-200"
           }`}
         />
       ))}
