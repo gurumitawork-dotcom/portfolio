@@ -157,7 +157,7 @@ export default function Home() {
 
       <StatBand />
 
-      <CommitmentGrid />
+      <CommitmentGrid variant="compact" />
 
       <PracticeHighlight />
 

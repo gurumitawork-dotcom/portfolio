@@ -12,3 +12,11 @@ export { default as servicePeripheral } from "./service_peripheral_1788513951255
 export { default as serviceTeaching } from "./service_teaching_1788513969105.jpg";
 export { default as anatomicalHeart3D } from "./anatomical_heart_3d_1788515525829.jpg";
 
+export { default as heartEcgGlow } from "./heart_ecg_glow.webp";
+export { default as heartHandsCare } from "./heart_hands_care.webp";
+export { default as heartLightGlow } from "./heart_light_glow.webp";
+export { default as pillarsBg } from "./pillars_bg.webp";
+export { default as heartHandsGlow } from "./heart_hands_glow.webp";
+export { default as structuralHeartGlow } from "./structural_heart_glow.webp";
+export { default as cardioRiskGlow } from "./cardio_risk_glow.webp";
+

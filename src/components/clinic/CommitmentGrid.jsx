@@ -1,27 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import {
-  Activity,
-  Footprints,
   Route,
   GraduationCap,
   ArrowRight,
   ShieldAlert,
   HeartPulse,
-  CheckCircle2,
-  Stethoscope,
-  Building2,
-  ExternalLink,
   ChevronRight,
-  Sparkles,
-  Phone,
-  MapPin,
-  Users,
-  Award,
   ShieldCheck,
-  Zap,
 } from "lucide-react";
 import Reveal from "../ui/Reveal.jsx";
+import { pillarsBg } from "../../assets/images/index.js";
 
 export const PILLARS_DATA = [
   {
@@ -231,409 +221,302 @@ export const PILLARS_DATA = [
   },
 ];
 
-export default function CommitmentGrid({ eyebrow = "Commitment to better heart health" }) {
-  const [activeId, setActiveId] = useState("amputation");
-  const activePillar = PILLARS_DATA.find((p) => p.id === activeId) || PILLARS_DATA[1];
+export default function CommitmentGrid({ eyebrow = "Commitment to better heart health", variant = "full" }) {
+  const isCompact = variant === "compact";
+  const [activeId, setActiveId] = useState(isCompact ? null : "coronary");
+  const activePillar = PILLARS_DATA.find((p) => p.id === activeId) || PILLARS_DATA[0];
 
   return (
     <section
       id="clinical-pillars"
-      className="relative overflow-hidden bg-gradient-to-b from-[#fbf9f8] via-[#ffffff] to-[#f7f4f2] py-16 sm:py-24 border-y border-[#eedede]/60"
+      className={
+        isCompact
+          ? "relative overflow-hidden bg-gradient-to-b from-[#fbf9f8] via-[#ffffff] to-[#f7f4f2] py-16 sm:py-24 border-y border-[#eedede]/60"
+          : "relative overflow-hidden py-14 sm:py-16"
+      }
     >
-      {/* Background medical grid and pulse trace watermark */}
-      <div className="pointer-events-none absolute inset-0 opacity-[0.035] select-none [background-image:radial-gradient(#9e2a2b_1px,transparent_1px)] [background-size:24px_24px]" />
-      
-      {/* Subtle top arterial glow */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-80 w-[600px] rounded-full bg-crimson-200/20 blur-3xl" />
+      {isCompact && (
+        <>
+          {/* Background medical grid and pulse trace watermark */}
+          <div className="pointer-events-none absolute inset-0 opacity-[0.035] select-none [background-image:radial-gradient(#9e2a2b_1px,transparent_1px)] [background-size:24px_24px]" />
+          <img
+            src={pillarsBg}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 -top-10 hidden w-[34rem] select-none opacity-[0.07] mix-blend-multiply md:block"
+          />
+          {/* Subtle top arterial glow */}
+          <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-80 w-[600px] rounded-full bg-crimson-200/20 blur-3xl" />
+        </>
+      )}
 
-      <div className="container-lg relative z-10">
-        {/* Section Header */}
-        <Reveal className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#f8c4cc] bg-[#fff5f6] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-crimson-700 shadow-sm">
-            <HeartPulse size={14} className="text-crimson-600 animate-pulse" />
-            <span>{eyebrow}</span>
+      {isCompact && (
+        <div className="container-lg relative z-10">
+        {/* Section Header — compact, asymmetric: eyebrow+title left, supporting line right */}
+        <Reveal className="flex flex-col gap-4 border-b border-[#eedede]/70 pb-6 sm:flex-row sm:items-end sm:justify-between sm:gap-10 sm:pb-8">
+          <div>
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#f8c4cc] bg-[#fff5f6] px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-crimson-700 shadow-sm">
+              <HeartPulse size={13} className="text-crimson-600 animate-pulse" />
+              <span>{eyebrow}</span>
+            </div>
+            <h2 className="mt-3 font-sans text-3xl font-extrabold tracking-[-0.03em] text-[#14233c] sm:text-4xl lg:text-[2.4rem] leading-[1.1]">
+              Four pillars of the practice
+            </h2>
           </div>
 
-          <h2 className="mt-4 font-sans text-3xl font-extrabold tracking-[-0.03em] text-[#14233c] sm:text-4xl lg:text-[2.65rem] leading-[1.12]">
-            Four pillars of the practice
-          </h2>
-
-          <p className="mt-3.5 text-base sm:text-lg font-medium text-crimson-800/90">
-            Mapped from the CV — not a generic clinic checklist.
-          </p>
-
-          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-[14.5px]">
+          <p className="max-w-sm text-sm leading-relaxed text-slate-600 sm:text-right sm:text-[13.5px]">
             Every pillar represents documented procedural volumes, institutional directorship,
             fellowship subspecialization, or academic faculty appointments in Batesville and UAMS.
           </p>
         </Reveal>
 
-        {/* The 4 Architectural Pillar Cards */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 lg:gap-6">
-          {PILLARS_DATA.map((pillar, i) => {
-            const Icon = pillar.icon;
-            const isActive = activeId === pillar.id;
+            {/* The 4 Architectural Pillar Cards (compact preview) */}
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 lg:gap-6">
+              {PILLARS_DATA.map((pillar, i) => {
+                const Icon = pillar.icon;
+                return (
+                  <Reveal key={pillar.id} delay={i * 0.07} className="h-full">
+                    <Link
+                      to="/about#clinical-pillars"
+                      className="group relative flex h-full flex-col justify-between rounded-[22px] border border-[#eedede]/80 bg-white/85 p-6 text-left shadow-[0_10px_30px_-15px_rgba(20,35,60,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-crimson-200 hover:bg-white hover:shadow-[0_16px_36px_-12px_rgba(20,35,60,0.14)]"
+                    >
+                      <span className="absolute -top-3 -right-1 select-none font-serif text-7xl font-black text-slate-100 transition-colors duration-300 group-hover:text-crimson-50">
+                        {pillar.roman}
+                      </span>
+                      <div className="absolute top-0 left-0 right-0 h-[3px] bg-transparent transition-all duration-300 group-hover:bg-crimson-200" />
 
-            return (
-              <Reveal
-                key={pillar.id}
-                delay={i * 0.07}
-                className="h-full"
+                      <div>
+                        <div className="relative z-10 flex items-center gap-2">
+                          <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#fff0f2] text-crimson-700 transition-all duration-300 group-hover:bg-crimson-600 group-hover:text-white">
+                            <Icon size={22} strokeWidth={2} />
+                          </span>
+                          <div className="flex flex-col">
+                            <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-400">
+                              Pillar {pillar.index}
+                            </span>
+                            <span className="text-[11px] font-bold tracking-tight text-slate-600">
+                              {pillar.badge}
+                            </span>
+                          </div>
+                        </div>
+
+                        <h3 className="mt-5 text-[1.25rem] font-bold leading-snug tracking-tight text-[#14233c] transition-colors duration-200 group-hover:text-crimson-800">
+                          {pillar.title}
+                        </h3>
+
+                        <p className="mt-2.5 text-[13px] leading-relaxed text-slate-600">
+                          {pillar.summary}
+                        </p>
+
+                        <div className="mt-4 flex flex-wrap gap-1.5">
+                          {pillar.procedures.slice(0, 2).map((proc) => (
+                            <span
+                              key={proc}
+                              className="rounded-md border border-slate-200/60 bg-slate-100/80 px-2 py-0.5 text-[11px] font-medium text-slate-600 transition-colors group-hover:bg-[#fff2f4] group-hover:text-crimson-800"
+                            >
+                              {proc}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="relative z-10 mt-6 flex items-center justify-between border-t border-slate-100/90 pt-4 text-[12px] font-semibold">
+                        <span className="inline-flex items-center gap-1 text-slate-600 transition-colors group-hover:text-crimson-700">
+                          View full profile
+                          <ChevronRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                        </span>
+                      </div>
+                    </Link>
+                  </Reveal>
+                );
+              })}
+            </div>
+
+            <Reveal delay={0.32} className="mt-10 flex justify-center">
+              <Link
+                to="/about#clinical-pillars"
+                className="inline-flex items-center gap-2 rounded-xl bg-[#9E2A2B] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-[#852324]"
               >
-                <div
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => setActiveId(pillar.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setActiveId(pillar.id);
-                    }
-                  }}
-                  className={`group relative flex h-full flex-col justify-between rounded-[22px] p-6 text-left transition-all duration-300 cursor-pointer overflow-hidden ${
-                    isActive
-                      ? "bg-white border-2 border-crimson-600 shadow-[0_20px_45px_-12px_rgba(158,42,43,0.22)] ring-4 ring-crimson-50 -translate-y-1.5"
-                      : "bg-white/85 border border-[#eedede]/80 shadow-[0_10px_30px_-15px_rgba(20,35,60,0.08)] hover:bg-white hover:border-crimson-300 hover:shadow-[0_16px_36px_-12px_rgba(20,35,60,0.14)] hover:-translate-y-1"
-                  }`}
-                >
-                  {/* Roman Numeral Architectural Watermark */}
-                  <span
-                    className={`absolute -top-3 -right-1 font-serif text-7xl font-black transition-opacity duration-300 select-none pointer-events-none ${
-                      isActive ? "text-crimson-100/80" : "text-slate-100 group-hover:text-crimson-50"
-                    }`}
-                  >
-                    {pillar.roman}
-                  </span>
+                <span>View Full Clinical Profile</span>
+                <ArrowRight size={16} />
+              </Link>
+            </Reveal>
+        </div>
+      )}
 
-                  {/* Top ECG Accent Line */}
-                  <div
-                    className={`absolute top-0 left-0 right-0 h-[3px] transition-all duration-300 ${
-                      isActive
-                        ? "bg-gradient-to-r from-crimson-600 via-crimson-500 to-rose-400"
-                        : "bg-transparent group-hover:bg-crimson-200"
-                    }`}
-                  />
+      {/* UNIQUE LAYOUT: full-bleed dark console — header merged directly into the same
+          navy panel as the pillar switcher and content stage, instead of a separate
+          light header block sitting above a hard-edged dark section. */}
+      {!isCompact && (
+        <Reveal delay={0.1} className="relative z-10">
+          <div className="relative overflow-hidden bg-gradient-to-br from-[#0b1626] via-[#12213a] to-[#1c1230] py-10 sm:py-14">
+            <div className="pointer-events-none absolute inset-0 opacity-[0.05] [background-image:radial-gradient(#ffffff_1px,transparent_1px)] [background-size:26px_26px]" />
+            <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-crimson-600/20 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-32 -left-16 h-80 w-80 rounded-full bg-blue-600/15 blur-3xl" />
+            <img
+              src={pillarsBg}
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 right-0 hidden w-[42%] select-none object-cover opacity-[0.16] mix-blend-luminosity lg:block"
+              style={{
+                maskImage: "linear-gradient(to left, black, transparent)",
+                WebkitMaskImage: "linear-gradient(to left, black, transparent)",
+              }}
+            />
 
-                  {/* Top Row: Index, Badge & Icon */}
-                  <div>
-                    <div className="relative z-10 flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2">
+            <div className="container-lg relative z-10">
+              {/* Header — merged into the same navy panel, no seam against the console below */}
+              <div className="mb-9 flex flex-col gap-4 border-b border-white/10 pb-6 sm:mb-11 sm:flex-row sm:items-end sm:justify-between sm:gap-10 sm:pb-8">
+                <div>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-crimson-400">
+                    <HeartPulse size={13} className="text-crimson-400 animate-pulse" />
+                    <span>{eyebrow}</span>
+                  </div>
+                  <h2 className="mt-3 font-sans text-3xl font-extrabold tracking-[-0.03em] text-white sm:text-4xl lg:text-[2.4rem] leading-[1.1]">
+                    Four pillars of the practice
+                  </h2>
+                </div>
+
+                <p className="max-w-sm text-sm leading-relaxed text-slate-300 sm:text-right sm:text-[13.5px]">
+                  Every pillar represents documented procedural volumes, institutional directorship,
+                  fellowship subspecialization, or academic faculty appointments in Batesville and UAMS.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-3 lg:grid-cols-[300px_1fr] lg:gap-0">
+                {/* Left: pillar switcher — horizontal scroller on mobile, full-height sidebar on desktop */}
+                <div className="flex gap-2 overflow-x-auto pb-2 lg:h-full lg:flex-col lg:gap-2 lg:overflow-visible lg:border-r lg:border-white/10 lg:pb-0 lg:pr-6">
+                  {PILLARS_DATA.map((pillar) => {
+                    const Icon = pillar.icon;
+                    const isSelected = activeId === pillar.id;
+                    return (
+                      <button
+                        key={pillar.id}
+                        type="button"
+                        onClick={() => setActiveId(pillar.id)}
+                        className={`flex shrink-0 items-center gap-3 rounded-xl px-4 py-3.5 text-left transition-all duration-300 lg:flex-1 lg:shrink lg:py-4 ${
+                          isSelected ? "bg-white/10 ring-1 ring-inset ring-crimson-500/40" : "hover:bg-white/5"
+                        }`}
+                      >
                         <span
-                          className={`grid h-11 w-11 place-items-center rounded-xl transition-all duration-300 ${
-                            isActive
-                              ? "bg-crimson-600 text-white shadow-md shadow-crimson-600/30"
-                              : "bg-[#fff0f2] text-crimson-700 group-hover:bg-crimson-600 group-hover:text-white"
+                          className={`font-serif text-xl font-black leading-none ${
+                            isSelected ? "text-crimson-400" : "text-white/25"
                           }`}
                         >
-                          <Icon size={22} strokeWidth={2} />
+                          {pillar.index}
                         </span>
-                        <div className="flex flex-col">
-                          <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-400">
-                            Pillar {pillar.index}
+                        <span
+                          className={`grid h-9 w-9 shrink-0 place-items-center rounded-lg transition-colors ${
+                            isSelected ? "bg-crimson-600 text-white" : "bg-white/5 text-white/50"
+                          }`}
+                        >
+                          <Icon size={16} strokeWidth={2} />
+                        </span>
+                        <span className="min-w-0">
+                          <span
+                            className={`block whitespace-nowrap text-[13.5px] font-bold leading-snug lg:whitespace-normal ${
+                              isSelected ? "text-white" : "text-white/70"
+                            }`}
+                          >
+                            {pillar.title}
                           </span>
                           <span
-                            className={`text-[11px] font-bold tracking-tight ${
-                              isActive ? "text-crimson-700" : "text-slate-600"
+                            className={`hidden text-[11px] font-medium uppercase tracking-wide lg:block ${
+                              isSelected ? "text-crimson-400" : "text-white/35"
                             }`}
                           >
                             {pillar.badge}
                           </span>
-                        </div>
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Right: large content stage — fills the remaining width */}
+                <div className="min-h-[480px] py-8 lg:min-h-[520px] lg:py-2 lg:pl-10">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activePillar.id}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -12 }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <div className="inline-flex items-center gap-2 rounded-full border border-crimson-500/30 bg-crimson-500/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-crimson-400">
+                        <span className="h-1.5 w-1.5 rounded-full bg-crimson-400" />
+                        Pillar {activePillar.index} · {activePillar.badge}
                       </div>
 
-                      {/* Active Indicator Pulse */}
-                      {isActive && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-crimson-50 border border-crimson-200 px-2 py-0.5 text-[10px] font-bold text-crimson-700">
-                          <span className="h-1.5 w-1.5 rounded-full bg-crimson-600 animate-ping" />
-                          <span>Active</span>
-                        </span>
-                      )}
-                    </div>
+                      <h3 className="mt-4 text-2xl font-extrabold leading-snug tracking-tight text-white sm:text-3xl lg:text-[2.1rem]">
+                        {activePillar.deepDive.headline}
+                      </h3>
 
-                    {/* Pillar Title */}
-                    <h3
-                      className={`mt-5 text-[1.25rem] font-bold leading-snug tracking-tight transition-colors duration-200 ${
-                        isActive ? "text-[#14233c]" : "text-[#14233c] group-hover:text-crimson-800"
-                      }`}
-                    >
-                      {pillar.title}
-                    </h3>
+                      <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-slate-300">
+                        {activePillar.deepDive.description}
+                      </p>
 
-                    {/* Exact User Prompt Summary */}
-                    <p className="mt-2.5 text-[13px] leading-relaxed text-slate-600">
-                      {pillar.summary}
-                    </p>
+                      {/* Protocols laid out as a 3-column grid — uses the full stage width */}
+                      <div className="mt-8 grid grid-cols-1 gap-3.5 sm:grid-cols-3">
+                        {activePillar.deepDive.protocols.map((proto) => (
+                          <div key={proto.num} className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-crimson-500/15 text-[11px] font-black text-crimson-400">
+                              {proto.num}
+                            </span>
+                            <h4 className="mt-3 text-[13.5px] font-bold leading-snug text-white">{proto.title}</h4>
+                            <p className="mt-1.5 text-[12px] leading-relaxed text-slate-400">{proto.detail}</p>
+                            <span className="mt-3 inline-block rounded-md bg-white/5 px-2 py-0.5 text-[10px] font-semibold text-slate-300">
+                              {proto.badge}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
 
-                    {/* Clinical Procedure Chips */}
-                    <div className="mt-4 flex flex-wrap gap-1.5">
-                      {pillar.procedures.map((proc) => (
-                        <span
-                          key={proc}
-                          className={`rounded-md px-2 py-0.5 text-[11px] font-medium transition-colors ${
-                            isActive
-                              ? "bg-crimson-50/80 text-crimson-900 border border-crimson-100"
-                              : "bg-slate-100/80 text-slate-600 border border-slate-200/60 group-hover:bg-[#fff2f4] group-hover:text-crimson-800"
-                          }`}
-                        >
-                          {proc}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Card Bottom: Footnote & Interactive Callout */}
-                  <div className="relative z-10 mt-6 pt-4 border-t border-slate-100/90">
-                    <p className="flex items-start gap-1.5 text-[11px] font-medium leading-snug text-slate-500">
-                      <CheckCircle2
-                        size={13}
-                        className={`shrink-0 mt-0.5 ${isActive ? "text-crimson-600" : "text-slate-400"}`}
-                      />
-                      <span>{pillar.footnote}</span>
-                    </p>
-
-                    <div className="mt-3 flex items-center justify-between text-[12px] font-semibold">
-                      <span
-                        className={`inline-flex items-center gap-1 transition-colors ${
-                          isActive
-                            ? "text-crimson-700"
-                            : "text-slate-600 group-hover:text-crimson-700"
-                        }`}
-                      >
-                        {isActive ? "Viewing Protocol Dossier" : "Inspect Protocol"}
-                        <ChevronRight
-                          size={14}
-                          className={`transition-transform duration-200 ${
-                            isActive ? "translate-x-1 text-crimson-700" : "group-hover:translate-x-0.5"
-                          }`}
-                        />
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-
-        {/* REDESIGNED: Clinical Protocol Dossier Merged Directly With Background */}
-        <Reveal delay={0.15} className="mt-14 pt-10 border-t border-[#eedede]/80">
-          {/* Header Bar: Open & Merged Directly With Section Background */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-6 border-b border-[#eedede]/70">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="grid h-7 w-7 shrink-0 place-items-center rounded-lg bg-crimson-600 text-white shadow-xs">
-                  <Stethoscope size={15} strokeWidth={2.2} />
-                </span>
-                <span className="text-[12px] font-extrabold uppercase tracking-[0.16em] text-slate-800">
-                  Clinical Protocol Dossier
-                </span>
-                <span className="inline-flex items-center gap-1 rounded-full bg-crimson-50 border border-crimson-200 px-2 py-0.5 text-[10px] font-bold text-crimson-700">
-                  <span className="h-1.5 w-1.5 rounded-full bg-crimson-600 animate-ping" />
-                  Interactive Deep-Dive
-                </span>
-              </div>
-              <p className="mt-1 text-[12.5px] text-slate-500">
-                Direct evidence, technical modalities, and institutional directorship for Pillar 0{activePillar.index}.
-              </p>
-            </div>
-
-            {/* Seamless Station Switcher Pills */}
-            <div className="flex items-center gap-1.5 p-1 rounded-xl bg-slate-200/50">
-              {PILLARS_DATA.map((pillar) => {
-                const isSelected = pillar.id === activePillar.id;
-                return (
-                  <button
-                    key={pillar.id}
-                    type="button"
-                    onClick={() => setActiveId(pillar.id)}
-                    className={`flex items-center gap-2 rounded-lg px-3 py-1.5 text-[12px] font-semibold transition-all ${
-                      isSelected
-                        ? "bg-white text-[#14233c] shadow-xs font-bold ring-1 ring-black/5"
-                        : "text-slate-600 hover:text-slate-900 hover:bg-white/50"
-                    }`}
-                  >
-                    <span className={`text-[11px] font-mono font-bold ${isSelected ? "text-crimson-600" : "text-slate-400"}`}>
-                      {pillar.index}
-                    </span>
-                    <span>{pillar.shortName}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Dossier Body: Merged With Background */}
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-[1.25fr_0.85fr] gap-8 xl:gap-12 items-start">
-            {/* Left Side: Clinical Protocol Details & Modalities */}
-            <div>
-              {/* Active Pillar Pill */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-crimson-200/90 bg-crimson-50 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-crimson-700">
-                <span className="flex h-1.5 w-1.5 rounded-full bg-crimson-600" />
-                <span>Pillar {activePillar.index} · {activePillar.badge}</span>
-              </div>
-
-              {/* Headline */}
-              <h3 className="mt-3.5 font-sans text-2xl font-extrabold tracking-tight text-[#14233c] sm:text-3xl lg:text-[2.15rem] leading-snug">
-                {activePillar.deepDive.headline}
-              </h3>
-
-              {/* Core Description */}
-              <p className="mt-3 text-[14px] leading-relaxed text-slate-600 sm:text-[14.5px]">
-                {activePillar.deepDive.description}
-              </p>
-
-              {/* Protocol Matrix Section */}
-              <div className="mt-7">
-                <div className="flex items-center justify-between pb-2 border-b border-[#eedede]/70">
-                  <span className="text-[11.5px] font-extrabold uppercase tracking-[0.16em] text-slate-700">
-                    Key Technical Modalities & Protocols:
-                  </span>
-                  <span className="text-[11px] font-medium text-slate-400">
-                    3 Standardized Clinical Stages
-                  </span>
-                </div>
-
-                {/* Protocol modules merged smoothly with the background */}
-                <div className="mt-3.5 space-y-2.5">
-                  {activePillar.deepDive.protocols.map((proto) => (
-                    <div
-                      key={proto.num}
-                      className="group flex items-start gap-3.5 rounded-xl border border-[#eedede]/70 bg-white/75 p-3.5 sm:p-4 transition-all duration-200 hover:border-crimson-200 hover:bg-white hover:shadow-xs"
-                    >
-                      <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#fff0f2] text-[11px] font-black text-crimson-700 border border-crimson-100 group-hover:bg-crimson-600 group-hover:text-white transition-colors">
-                        {proto.num}
-                      </span>
-
-                      <div className="min-w-0 flex-1">
-                        <div className="flex flex-wrap items-center justify-between gap-1.5">
-                          <h4 className="text-[13.5px] font-bold leading-snug text-[#14233c] group-hover:text-crimson-800 transition-colors">
-                            {proto.title}
-                          </h4>
-                          <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-600">
-                            {proto.badge}
+                      <div className="mt-6 flex flex-wrap gap-2">
+                        {activePillar.procedures.map((proc) => (
+                          <span
+                            key={proc}
+                            className="rounded-lg border border-white/10 bg-white/5 px-2.5 py-1 text-[11.5px] font-medium text-slate-300"
+                          >
+                            {proc}
                           </span>
-                        </div>
-                        <p className="mt-1 text-[12.5px] leading-relaxed text-slate-600">
-                          {proto.detail}
-                        </p>
+                        ))}
                       </div>
-                    </div>
-                  ))}
+
+                      {/* Bottom bar: institutional citation + CTAs, spanning the full stage width */}
+                      <div className="mt-8 flex flex-col gap-5 border-t border-white/10 pt-6 lg:flex-row lg:items-center lg:justify-between">
+                        <div className="flex items-start gap-2.5">
+                          <ShieldCheck size={16} className="mt-0.5 shrink-0 text-crimson-400" />
+                          <div>
+                            <p className="text-[13px] font-bold text-white">{activePillar.deepDive.citation}</p>
+                            <p className="mt-0.5 text-[12px] text-slate-400">{activePillar.deepDive.citationOrg}</p>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
+                          <Link
+                            to={activePillar.ctaLink}
+                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-crimson-600 px-4 py-2.5 text-[13px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-crimson-500"
+                          >
+                            <span>{activePillar.ctaText}</span>
+                            <ArrowRight size={14} />
+                          </Link>
+                          <Link
+                            to="/contact"
+                            className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-[13px] font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-white/10"
+                          >
+                            <span>Physician Referral</span>
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
                 </div>
               </div>
-
-              {/* Focus Areas Chips */}
-              <div className="mt-6 flex flex-wrap items-center gap-2 pt-4 border-t border-[#eedede]/70">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                  Focus Areas:
-                </span>
-                {activePillar.procedures.map((proc) => (
-                  <span
-                    key={proc}
-                    className="rounded-lg bg-white/80 border border-slate-200/80 px-2.5 py-1 text-[11.5px] font-medium text-slate-700"
-                  >
-                    {proc}
-                  </span>
-                ))}
-              </div>
             </div>
-
-            {/* Right Side: Institutional Grounding Panel */}
-            <div className="rounded-2xl border border-[#eedede]/90 bg-white/80 backdrop-blur-xs p-6 sm:p-7 shadow-xs">
-              {/* Header with Official Shield */}
-              <div className="flex items-center justify-between pb-3 border-b border-slate-200/70">
-                <span className="flex items-center gap-1.5 text-[11px] font-extrabold uppercase tracking-[0.16em] text-crimson-700">
-                  <ShieldCheck size={14} className="text-crimson-600" />
-                  CV Institutional Grounding
-                </span>
-                <span className="rounded-full bg-white border border-[#eedede] px-2 py-0.5 text-[10px] font-semibold text-slate-600 shadow-xs">
-                  Verified CV
-                </span>
-              </div>
-
-              {/* Official Appointment Card */}
-              <div className="mt-4 rounded-xl border border-[#eedede]/70 bg-white p-4.5 sm:p-5 shadow-xs">
-                <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-slate-400">
-                  Documented Appointment
-                </span>
-                <h4 className="mt-1 text-[15px] font-bold leading-snug text-[#14233c]">
-                  {activePillar.deepDive.citation}
-                </h4>
-                <p className="mt-1 text-[12px] font-medium text-crimson-800">
-                  {activePillar.deepDive.citationOrg}
-                </p>
-
-                <div className="mt-3 pt-3 border-t border-slate-100">
-                  <span className="block text-[10.5px] font-bold uppercase tracking-wider text-slate-500">
-                    Program Focus
-                  </span>
-                  <p className="mt-0.5 text-[13px] font-semibold text-slate-800">
-                    {activePillar.deepDive.subProgram}
-                  </p>
-                </div>
-              </div>
-
-              {/* Referral & Regional Coordination Note */}
-              <div className="mt-3.5 rounded-xl bg-slate-50/80 border border-slate-200/60 p-3.5">
-                <div className="flex items-start gap-2.5">
-                  <Building2 size={15} className="text-crimson-600 mt-0.5 shrink-0" />
-                  <div>
-                    <span className="block text-[11.5px] font-bold text-slate-800">
-                      Regional Coordination & Referrals
-                    </span>
-                    <p className="mt-0.5 text-[12px] leading-relaxed text-slate-600">
-                      {activePillar.deepDive.referralNote}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Direct Clinic Information */}
-              <div className="mt-3.5 space-y-1 text-[11.5px] text-slate-600">
-                <p className="flex items-center gap-2">
-                  <MapPin size={13} className="text-crimson-700 shrink-0" />
-                  <span>White River Health Cardiology · 16 Hospital Circle, Batesville AR</span>
-                </p>
-                <p className="flex items-center gap-2">
-                  <Phone size={13} className="text-crimson-700 shrink-0" />
-                  <span>Referral Hotline: <strong className="text-slate-800">870-262-1600</strong></span>
-                </p>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="mt-5 pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
-                <Link
-                  to={activePillar.ctaLink}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#9E2A2B] px-4 py-2.5 text-[13px] font-semibold text-white shadow-xs transition-all hover:bg-[#852324] hover:-translate-y-0.5 flex-1"
-                >
-                  <span>{activePillar.ctaText}</span>
-                  <ArrowRight size={14} />
-                </Link>
-
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl border border-crimson-200 bg-white px-4 py-2.5 text-[13px] font-semibold text-crimson-800 transition-all hover:bg-crimson-50 hover:-translate-y-0.5"
-                >
-                  <span>Physician Referral</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* Dossier Bottom Verification Baseline */}
-          <div className="mt-10 pt-4 border-t border-[#eedede]/70 flex flex-wrap items-center justify-between gap-3 text-[11.5px] text-slate-500">
-            <div className="flex items-center gap-2">
-              <ShieldCheck size={14} className="text-crimson-600" />
-              <span>
-                Coronary, limb salvage, and endovascular pathways verified in clinical CV · White River Health & UAMS
-              </span>
-            </div>
-            <span className="hidden sm:inline font-mono text-[10.5px] text-slate-400 uppercase tracking-wider">
-              Protocol v2024 · Batesville, AR
-            </span>
           </div>
         </Reveal>
-      </div>
+      )}
     </section>
   );
 }
