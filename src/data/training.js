@@ -9,6 +9,7 @@ export const TRAINING_GROUPS = [
         desc: "Complex coronary diagnostic and intervention, plus peripheral arterial and venous intervention.",
         volume: "1,000+",
         volumeNote: "cases per year",
+        focus: ["Complex coronary intervention", "Coronary diagnostics", "Peripheral arterial", "Venous intervention"],
         current: true,
       },
     ],

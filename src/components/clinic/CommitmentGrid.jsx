@@ -7,7 +7,6 @@ import {
   ArrowRight,
   ShieldAlert,
   HeartPulse,
-  ChevronRight,
   ShieldCheck,
 } from "lucide-react";
 import Reveal from "../ui/Reveal.jsx";
@@ -221,134 +220,16 @@ export const PILLARS_DATA = [
   },
 ];
 
-export default function CommitmentGrid({ eyebrow = "Commitment to better heart health", variant = "full" }) {
-  const isCompact = variant === "compact";
-  const [activeId, setActiveId] = useState(isCompact ? null : "coronary");
+export default function CommitmentGrid({ eyebrow = "Commitment to better heart health" }) {
+  const [activeId, setActiveId] = useState("coronary");
   const activePillar = PILLARS_DATA.find((p) => p.id === activeId) || PILLARS_DATA[0];
 
   return (
-    <section
-      id="clinical-pillars"
-      className={
-        isCompact
-          ? "relative overflow-hidden bg-gradient-to-b from-[#fbf9f8] via-[#ffffff] to-[#f7f4f2] py-16 sm:py-24 border-y border-[#eedede]/60"
-          : "relative overflow-hidden py-14 sm:py-16"
-      }
-    >
-      {isCompact && (
-        <>
-          {/* Background medical grid and pulse trace watermark */}
-          <div className="pointer-events-none absolute inset-0 opacity-[0.035] select-none [background-image:radial-gradient(#9e2a2b_1px,transparent_1px)] [background-size:24px_24px]" />
-          <img
-            src={pillarsBg}
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-16 -top-10 hidden w-[34rem] select-none opacity-[0.07] mix-blend-multiply md:block"
-          />
-          {/* Subtle top arterial glow */}
-          <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-80 w-[600px] rounded-full bg-crimson-200/20 blur-3xl" />
-        </>
-      )}
-
-      {isCompact && (
-        <div className="container-lg relative z-10">
-        {/* Section Header — compact, asymmetric: eyebrow+title left, supporting line right */}
-        <Reveal className="flex flex-col gap-4 border-b border-[#eedede]/70 pb-6 sm:flex-row sm:items-end sm:justify-between sm:gap-10 sm:pb-8">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#f8c4cc] bg-[#fff5f6] px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.16em] text-crimson-700 shadow-sm">
-              <HeartPulse size={13} className="text-crimson-600 animate-pulse" />
-              <span>{eyebrow}</span>
-            </div>
-            <h2 className="mt-3 font-sans text-3xl font-extrabold tracking-[-0.03em] text-[#14233c] sm:text-4xl lg:text-[2.4rem] leading-[1.1]">
-              Four pillars of the practice
-            </h2>
-          </div>
-
-          <p className="max-w-sm text-sm leading-relaxed text-slate-600 sm:text-right sm:text-[13.5px]">
-            Every pillar represents documented procedural volumes, institutional directorship,
-            fellowship subspecialization, or academic faculty appointments in Batesville and UAMS.
-          </p>
-        </Reveal>
-
-            {/* The 4 Architectural Pillar Cards (compact preview) */}
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 lg:gap-6">
-              {PILLARS_DATA.map((pillar, i) => {
-                const Icon = pillar.icon;
-                return (
-                  <Reveal key={pillar.id} delay={i * 0.07} className="h-full">
-                    <Link
-                      to="/about#clinical-pillars"
-                      className="group relative flex h-full flex-col justify-between rounded-[22px] border border-[#eedede]/80 bg-white/85 p-6 text-left shadow-[0_10px_30px_-15px_rgba(20,35,60,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-crimson-200 hover:bg-white hover:shadow-[0_16px_36px_-12px_rgba(20,35,60,0.14)]"
-                    >
-                      <span className="absolute -top-3 -right-1 select-none font-serif text-7xl font-black text-slate-100 transition-colors duration-300 group-hover:text-crimson-50">
-                        {pillar.roman}
-                      </span>
-                      <div className="absolute top-0 left-0 right-0 h-[3px] bg-transparent transition-all duration-300 group-hover:bg-crimson-200" />
-
-                      <div>
-                        <div className="relative z-10 flex items-center gap-2">
-                          <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#fff0f2] text-crimson-700 transition-all duration-300 group-hover:bg-crimson-600 group-hover:text-white">
-                            <Icon size={22} strokeWidth={2} />
-                          </span>
-                          <div className="flex flex-col">
-                            <span className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-400">
-                              Pillar {pillar.index}
-                            </span>
-                            <span className="text-[11px] font-bold tracking-tight text-slate-600">
-                              {pillar.badge}
-                            </span>
-                          </div>
-                        </div>
-
-                        <h3 className="mt-5 text-[1.25rem] font-bold leading-snug tracking-tight text-[#14233c] transition-colors duration-200 group-hover:text-crimson-800">
-                          {pillar.title}
-                        </h3>
-
-                        <p className="mt-2.5 text-[13px] leading-relaxed text-slate-600">
-                          {pillar.summary}
-                        </p>
-
-                        <div className="mt-4 flex flex-wrap gap-1.5">
-                          {pillar.procedures.slice(0, 2).map((proc) => (
-                            <span
-                              key={proc}
-                              className="rounded-md border border-slate-200/60 bg-slate-100/80 px-2 py-0.5 text-[11px] font-medium text-slate-600 transition-colors group-hover:bg-[#fff2f4] group-hover:text-crimson-800"
-                            >
-                              {proc}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="relative z-10 mt-6 flex items-center justify-between border-t border-slate-100/90 pt-4 text-[12px] font-semibold">
-                        <span className="inline-flex items-center gap-1 text-slate-600 transition-colors group-hover:text-crimson-700">
-                          View full profile
-                          <ChevronRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-                        </span>
-                      </div>
-                    </Link>
-                  </Reveal>
-                );
-              })}
-            </div>
-
-            <Reveal delay={0.32} className="mt-10 flex justify-center">
-              <Link
-                to="/about#clinical-pillars"
-                className="inline-flex items-center gap-2 rounded-xl bg-[#9E2A2B] px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-[#852324]"
-              >
-                <span>View Full Clinical Profile</span>
-                <ArrowRight size={16} />
-              </Link>
-            </Reveal>
-        </div>
-      )}
-
+    <section id="clinical-pillars" className="relative overflow-hidden py-14 sm:py-16">
       {/* UNIQUE LAYOUT: full-bleed dark console — header merged directly into the same
           navy panel as the pillar switcher and content stage, instead of a separate
           light header block sitting above a hard-edged dark section. */}
-      {!isCompact && (
-        <Reveal delay={0.1} className="relative z-10">
+      <Reveal delay={0.1} className="relative z-10">
           <div className="relative overflow-hidden bg-gradient-to-br from-[#0b1626] via-[#12213a] to-[#1c1230] py-10 sm:py-14">
             <div className="pointer-events-none absolute inset-0 opacity-[0.05] [background-image:radial-gradient(#ffffff_1px,transparent_1px)] [background-size:26px_26px]" />
             <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-crimson-600/20 blur-3xl" />
@@ -516,7 +397,6 @@ export default function CommitmentGrid({ eyebrow = "Commitment to better heart h
             </div>
           </div>
         </Reveal>
-      )}
     </section>
   );
 }

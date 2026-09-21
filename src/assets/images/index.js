@@ -5,6 +5,11 @@ export { default as maheshHeart } from "./doctor/mahesh-heart.webp";
 export { default as maheshMeet } from "./doctor/mahesh-meet.webp";
 export { default as maheshHero } from "./doctor/mahesh-hero.webp";
 export { default as maheshBanner } from "./doctor/mahesh-banner.webp";
+export { default as teachingAnatomyHeart } from "./doctor/teaching-anatomy-heart.webp";
+export { default as trainingCoronaryHeart } from "./doctor/training-coronary-heart.webp";
+export { default as publicationsCathLab } from "./doctor/publications-cath-angiogram.webp";
+export { default as publicationsStethoscope } from "./doctor/publications-stethoscope.webp";
+export { default as presentationsCardiacImaging } from "./doctor/presentations-cardiac-imaging.webp";
 
 export { default as serviceCoronary } from "./service_coronary_1788513895564.jpg";
 export { default as serviceAmputation } from "./service_amputation_1788513921263.jpg";

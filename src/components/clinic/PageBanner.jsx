@@ -1,29 +1,60 @@
 import { Link } from "react-router-dom";
 import Reveal from "../ui/Reveal.jsx";
-import { maheshBanner, maheshPortrait, maheshHeart, cardioRiskGlow } from "../../assets/images/index.js";
+import {
+  maheshBanner,
+  maheshPortrait,
+  maheshHeart,
+  maheshClinic,
+  maheshMeet,
+  cardioRiskGlow,
+  serviceTeaching,
+  teachingAnatomyHeart,
+  maheshNav,
+  publicationsCathLab,
+  maheshHero,
+  presentationsCardiacImaging,
+  heartLightGlow,
+} from "../../assets/images/index.js";
 
 const VISUALS = {
   banner: { src: maheshBanner, alt: "Mahesh Anantha Narayanan", position: "object-[78%_center]" },
   doctor: { src: maheshPortrait, alt: "Mahesh Anantha Narayanan", position: "object-[center_18%]" },
   heart: { src: maheshHeart, alt: "Mahesh Anantha Narayanan holding an anatomical heart model", position: "object-[center_30%]" },
+  clinic: { src: maheshClinic, alt: "Mahesh Anantha Narayanan in his clinic", position: "object-[center_25%]" },
+  meet: { src: maheshMeet, alt: "Mahesh Anantha Narayanan", position: "object-[center_20%]" },
+  study: { src: maheshNav, alt: "Mahesh Anantha Narayanan", position: "object-[center_15%]" },
+  speaker: { src: maheshHero, alt: "Mahesh Anantha Narayanan explaining with an anatomical heart model", position: "object-[20%_center]" },
 };
 
-export default function PageBanner({ eyebrow, title, lede, visual = "banner" }) {
+const BACKDROPS = {
+  heart: { src: cardioRiskGlow, opacity: 0.18 },
+  teaching: { src: serviceTeaching, opacity: 0.18 },
+  anatomy: { src: teachingAnatomyHeart, opacity: 0.18 },
+  // Photo backdrop: a touch stronger than the soft glow images so it reads through the blend
+  research: { src: publicationsCathLab, opacity: 0.28 },
+  imaging: { src: presentationsCardiacImaging, opacity: 0.28 },
+  glow: { src: heartLightGlow, opacity: 0.3 },
+};
+
+export default function PageBanner({ eyebrow, title, lede, visual = "banner", backdrop = "heart" }) {
   const media = VISUALS[visual] ?? VISUALS.banner;
+  const backdropImg = BACKDROPS[backdrop] ?? BACKDROPS.heart;
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-b from-[#fde8eb] to-paper-50 pb-6 pt-36 sm:pb-8 sm:pt-[6.75rem]">
+      {/* Heart glow spans the banner's full height and fades to transparent on every side, so it never gets clipped into a hard edge */}
+      <img
+        src={backdropImg.src}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 left-1/2 z-0 h-full w-full -translate-x-1/2 select-none object-cover mix-blend-multiply lg:w-[34rem] lg:-translate-x-[45%] xl:w-[42rem]"
+        style={{
+          opacity: backdropImg.opacity,
+          maskImage: "radial-gradient(ellipse closest-side at center, black 30%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse closest-side at center, black 30%, transparent 100%)",
+        }}
+      />
       <div className="relative z-[1] mx-auto grid max-w-[1280px] items-center gap-8 px-5 py-3 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-10 lg:px-10 lg:py-3">
-        <img
-          src={cardioRiskGlow}
-          alt=""
-          aria-hidden="true"
-          className="pointer-events-none absolute left-[52%] top-1/2 z-0 hidden w-[30rem] h-[24rem] -translate-x-1/2 -translate-y-1/2 select-none object-cover opacity-[0.2] mix-blend-multiply lg:block xl:w-[38rem] xl:h-[29rem]"
-          style={{
-            maskImage: "radial-gradient(ellipse farthest-side at center, black 20%, transparent 100%)",
-            WebkitMaskImage: "radial-gradient(ellipse farthest-side at center, black 20%, transparent 100%)",
-          }}
-        />
 
         <Reveal immediate className="relative z-[2] min-w-0">
           {eyebrow && <p className="eyebrow">{eyebrow}</p>}

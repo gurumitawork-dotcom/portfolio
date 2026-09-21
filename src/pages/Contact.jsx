@@ -17,9 +17,47 @@ export default function Contact() {
 
       <section className="pb-8">
         <div className="container-lg grid items-start gap-6 lg:grid-cols-[1.5fr_1fr]">
-          <Reveal>
-            <AppointmentForm />
-          </Reveal>
+          <div className="space-y-4">
+            <Reveal>
+              <AppointmentForm />
+            </Reveal>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Reveal delay={0.1} className="glass-card flex items-center gap-4 p-5">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-crimson-50 text-crimson-700">
+                  <Phone size={18} />
+                </span>
+                <div>
+                  <h3 className="text-sm font-semibold text-navy-900">Office phone</h3>
+                  <a href={CLINIC_PHONE_HREF} className="mt-0.5 block text-sm font-medium text-slate-700 hover:text-crimson-600">
+                    {OFFICE.phone}
+                  </a>
+                </div>
+              </Reveal>
+              <Reveal delay={0.14} className="glass-card flex items-center gap-4 p-5">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-crimson-50 text-crimson-700">
+                  <Smartphone size={18} />
+                </span>
+                <div>
+                  <h3 className="text-sm font-semibold text-navy-900">Mobile</h3>
+                  <a
+                    href={`tel:+1${OFFICE.mobile.replace(/\D/g, "")}`}
+                    className="mt-0.5 block text-sm font-medium text-slate-700 hover:text-crimson-600"
+                  >
+                    {OFFICE.mobile}
+                  </a>
+                </div>
+              </Reveal>
+              <Reveal delay={0.18} className="sm:col-span-2">
+                <a
+                  href="/cv/Mahesh_Anantha-Narayanan_Master_CV_2026.docx"
+                  download
+                  className="btn-outline w-full justify-center"
+                >
+                  <Download size={16} /> Download full CV
+                </a>
+              </Reveal>
+            </div>
+          </div>
 
           <div className="space-y-4">
             <Reveal delay={0.06} className="glass-card overflow-hidden">
@@ -40,7 +78,7 @@ export default function Contact() {
               <iframe
                 title="Map to White River Health Cardiology"
                 src={`https://www.google.com/maps?q=${MAP_QUERY}&output=embed`}
-                className="h-40 w-full border-0 sm:h-48"
+                className="h-40 w-full border-0 sm:h-48 lg:h-[19rem]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
@@ -51,40 +89,6 @@ export default function Contact() {
                 className="flex items-center justify-center gap-2 border-t border-slate-100 py-3 text-sm font-semibold text-crimson-700 hover:bg-paper-50"
               >
                 <Navigation size={15} /> Get Directions
-              </a>
-            </Reveal>
-            <Reveal delay={0.1} className="glass-card flex items-center gap-4 p-5">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-crimson-50 text-crimson-700">
-                <Phone size={18} />
-              </span>
-              <div>
-                <h3 className="text-sm font-semibold text-navy-900">Office phone</h3>
-                <a href={CLINIC_PHONE_HREF} className="mt-0.5 block text-sm font-medium text-slate-700 hover:text-crimson-600">
-                  {OFFICE.phone}
-                </a>
-              </div>
-            </Reveal>
-            <Reveal delay={0.14} className="glass-card flex items-center gap-4 p-5">
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-crimson-50 text-crimson-700">
-                <Smartphone size={18} />
-              </span>
-              <div>
-                <h3 className="text-sm font-semibold text-navy-900">Mobile</h3>
-                <a
-                  href={`tel:+1${OFFICE.mobile.replace(/\D/g, "")}`}
-                  className="mt-0.5 block text-sm font-medium text-slate-700 hover:text-crimson-600"
-                >
-                  {OFFICE.mobile}
-                </a>
-              </div>
-            </Reveal>
-            <Reveal delay={0.18}>
-              <a
-                href="/cv/Mahesh_Anantha-Narayanan_Master_CV_2026.docx"
-                download
-                className="btn-outline w-full justify-center"
-              >
-                <Download size={16} /> Download full CV
               </a>
             </Reveal>
           </div>

@@ -63,7 +63,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center xl:flex">
+        <nav className="hidden items-center lg:flex">
           {PRIMARY_NAV.map((l) => (
             <NavLink key={l.to} to={l.to} end={l.to === "/"} className={({ isActive }) => linkClass(isActive)}>
               {l.label}
@@ -107,8 +107,8 @@ export default function Navbar() {
           </NavLink>
         </nav>
 
-        <div className="hidden items-center gap-3 xl:flex">
-          <a href={CLINIC_PHONE_HREF} className="text-sm font-semibold text-navy-900 hover:text-crimson-700">
+        <div className="hidden items-center gap-3 lg:flex">
+          <a href={CLINIC_PHONE_HREF} className="hidden text-sm font-semibold text-navy-900 hover:text-crimson-700 xl:inline">
             {OFFICE.phone}
           </a>
           <a href={CLINIC_PHONE_HREF} className="btn-primary !px-5 !py-2.5 !text-[13px]">
@@ -117,7 +117,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-slate-200 bg-white text-navy-900 xl:hidden"
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-slate-200 bg-white text-navy-900 lg:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle navigation"
           aria-expanded={open}
@@ -133,7 +133,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.22 }}
-            className="mx-3 mt-2 max-h-[min(32rem,calc(100dvh-6.5rem))] overflow-y-auto rounded-2xl border border-slate-100 bg-white shadow-lg sm:mx-4 xl:hidden"
+            className="mx-3 mt-2 max-h-[min(32rem,calc(100dvh-6.5rem))] overflow-y-auto rounded-2xl border border-slate-100 bg-white shadow-lg sm:mx-4 lg:hidden"
           >
             <nav className="flex flex-col p-3">
               {[...PRIMARY_NAV, { to: "/contact", label: "Contact" }].map((l) => {

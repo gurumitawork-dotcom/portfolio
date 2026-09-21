@@ -1,11 +1,13 @@
 import PageBanner from "../components/clinic/PageBanner.jsx";
 import Reveal from "../components/ui/Reveal.jsx";
 import IconBadge from "../components/ui/IconBadge.jsx";
-import { GraduationCap, BadgeCheck, ShieldCheck, CircleCheck } from "lucide-react";
+import { GraduationCap, BadgeCheck, ShieldCheck, CircleCheck, MapPin } from "lucide-react";
 import { TRAINING_GROUPS, DEGREES, BOARD_CERTIFICATION, LICENSURE } from "../data/training.js";
+import { trainingCoronaryHeart } from "../assets/images/index.js";
 
 const CURRENT = TRAINING_GROUPS[0].entries[0];
-const PRIOR = TRAINING_GROUPS.slice(1).flatMap((g) => g.entries);
+const PRIOR_GROUPS = TRAINING_GROUPS.slice(1);
+const PRIOR = PRIOR_GROUPS.flatMap((g) => g.entries);
 
 function CredentialColumn({ icon, title, rows }) {
   return (
@@ -35,63 +37,118 @@ export default function Training() {
       <PageBanner
         eyebrow="Training & Practice"
         title="From fellowship to a 1,000-case-a-year practice"
+        visual="clinic"
+        backdrop="teaching"
       />
 
-      <section className="pb-10 section-tint-a">
+      <section className="pb-10 pt-10 sm:pt-16">
         <div className="container-lg">
-          <Reveal className="glass-card relative overflow-hidden">
-            <span className="absolute inset-y-0 left-0 w-[3px] bg-crimson-600" />
-
-            <div className="px-5 sm:px-8 py-6 sm:py-7 sm:flex sm:items-start sm:justify-between sm:gap-10">
-              <div className="min-w-0">
+          {/* Current practice: full-width split panel — details left, volume block right */}
+          <Reveal className="glass-card relative overflow-hidden grid lg:grid-cols-[1.45fr_1fr]">
+            <div className="relative p-6 sm:p-10">
+              <span className="absolute inset-y-0 left-0 w-[3px] bg-crimson-600" />
+              <div className="flex flex-wrap items-center gap-3">
                 <p className="eyebrow">Current practice</p>
-                <h2 className="mt-2 text-xl sm:text-2xl font-semibold">{CURRENT.title}</h2>
-                <p className="mt-1 text-sm text-slate-500">{CURRENT.org}</p>
-                <p className="mt-3 text-sm text-slate-600 leading-relaxed max-w-xl">{CURRENT.desc}</p>
-                <p className="mt-2 text-[11px] font-bold uppercase tracking-[0.12em] text-crimson-700">{CURRENT.date}</p>
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-crimson-600/10 px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.12em] text-crimson-700">
+                  <span className="h-1.5 w-1.5 rounded-full bg-crimson-600 animate-pulse" />
+                  {CURRENT.date}
+                </span>
               </div>
-              <div className="mt-5 sm:mt-0 shrink-0 sm:text-right">
-                <p className="font-serif text-4xl text-crimson-700 leading-none">{CURRENT.volume}</p>
-                <p className="mt-1.5 text-xs text-slate-500">{CURRENT.volumeNote}</p>
-              </div>
+              <h2 className="mt-3 text-2xl sm:text-3xl font-semibold">{CURRENT.title}</h2>
+              <p className="mt-1.5 flex items-center gap-1.5 text-sm text-slate-500">
+                <MapPin size={14} className="text-crimson-600/70" /> {CURRENT.org}
+              </p>
+              <p className="mt-4 text-[15px] text-slate-600 leading-relaxed max-w-xl">{CURRENT.desc}</p>
+              {CURRENT.focus && (
+                <ul className="mt-6 grid gap-2.5 sm:grid-cols-2">
+                  {CURRENT.focus.map((f) => (
+                    <li
+                      key={f}
+                      className="flex items-center gap-2 rounded-xl border border-slate-900/[0.07] bg-paper-50 px-3.5 py-2.5 text-[13px] font-medium text-navy-900"
+                    >
+                      <CircleCheck size={15} className="shrink-0 text-crimson-600" /> {f}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
 
-            <div className="px-5 sm:px-8 py-2.5 border-t border-slate-900/[0.07] bg-slate-900/[0.03]">
-              <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-crimson-800/80">Prior training</p>
+            <div className="relative flex flex-col justify-between gap-8 overflow-hidden bg-gradient-to-br from-crimson-600 to-[#7a1425] p-6 text-white sm:p-10">
+              {/* Anatomy engraving as a textbook-style texture, fading out toward the figures */}
+              <img
+                src={trainingCoronaryHeart}
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-16 top-1/2 w-[26rem] max-w-none -translate-y-1/2 select-none opacity-[0.22] mix-blend-screen grayscale"
+                style={{
+                  maskImage: "radial-gradient(ellipse closest-side at center, black 40%, transparent 100%)",
+                  WebkitMaskImage: "radial-gradient(ellipse closest-side at center, black 40%, transparent 100%)",
+                }}
+              />
+              <div className="relative">
+                <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70">Annual volume</p>
+                <p className="mt-3 font-serif text-6xl leading-none sm:text-7xl">{CURRENT.volume}</p>
+                <p className="mt-2 text-sm text-white/80">{CURRENT.volumeNote}</p>
+              </div>
+              <div className="relative grid grid-cols-2 gap-4 border-t border-white/20 pt-5">
+                <div>
+                  <p className="text-2xl font-semibold leading-none">{new Date().getFullYear() - 2021}+</p>
+                  <p className="mt-1.5 text-xs text-white/70">years in practice</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-semibold leading-none">{PRIOR.length}</p>
+                  <p className="mt-1.5 text-xs text-white/70">training positions</p>
+                </div>
+              </div>
             </div>
-
-            <ul>
-              {PRIOR.map((entry) => (
-                <li
-                  key={`${entry.date}-${entry.title}`}
-                  className="grid sm:grid-cols-[10.5rem_1fr] gap-1 sm:gap-8 px-5 sm:px-8 py-3.5 border-t border-slate-900/[0.06]"
-                >
-                  <p className="text-[12px] text-slate-500 sm:pt-0.5 leading-snug">{entry.date}</p>
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium text-navy-900 leading-snug">{entry.title}</p>
-                    {entry.org && <p className="mt-0.5 text-[13px] text-slate-500">{entry.org}</p>}
-                    {entry.desc && (
-                      <p className="mt-1 text-xs text-slate-500 leading-relaxed">{entry.desc}</p>
-                    )}
-                    {(entry.volume || entry.mentor) && (
-                      <p className="mt-1 text-xs text-slate-500">
-                        {entry.volume && (
-                          <span className="text-crimson-700 font-semibold">
-                            {entry.volume} {entry.volumeNote}
-                          </span>
-                        )}
-                        {entry.volume && entry.mentor && <span className="text-slate-300"> · </span>}
-                        {entry.mentor && <span>Mentor: {entry.mentor}</span>}
-                      </p>
-                    )}
-                    {entry.items && (
-                      <p className="mt-1 text-xs text-slate-500 leading-relaxed">{entry.items.join(" · ")}</p>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
           </Reveal>
+
+          {/* Prior training: grouped two-column card grid */}
+          <div className="mt-12 space-y-10">
+            {PRIOR_GROUPS.map((group, gi) => (
+              <div key={group.heading}>
+                <Reveal className="mb-4 flex items-center gap-3">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-crimson-800/80">{group.heading}</p>
+                  <span className="h-px flex-1 bg-slate-900/[0.08]" />
+                </Reveal>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {group.entries.map((entry, i) => (
+                    <Reveal
+                      key={`${entry.date}-${entry.title}`}
+                      delay={0.04 * (i + gi)}
+                      className="glass-card relative flex flex-col p-5 sm:p-6"
+                    >
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-slate-500">{entry.date}</p>
+                      <p className="mt-2 text-[15px] font-semibold text-navy-900 leading-snug">{entry.title}</p>
+                      {entry.org && <p className="mt-1 text-[13px] text-slate-500">{entry.org}</p>}
+                      {entry.desc && <p className="mt-2.5 text-[13px] text-slate-600 leading-relaxed">{entry.desc}</p>}
+                      {entry.items && (
+                        <ul className="mt-2.5 space-y-1">
+                          {entry.items.map((item) => (
+                            <li key={item} className="flex gap-2 text-[13px] text-slate-600 leading-relaxed">
+                              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-crimson-600/60" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {(entry.volume || entry.mentor) && (
+                        <div className="mt-auto flex flex-wrap items-end justify-between gap-3 pt-4">
+                          {entry.mentor && <p className="text-xs text-slate-500">Mentor: {entry.mentor}</p>}
+                          {entry.volume && (
+                            <p className="ml-auto text-right">
+                              <span className="font-serif text-2xl leading-none text-crimson-700">{entry.volume}</span>
+                              <span className="block text-[11px] text-slate-500">{entry.volumeNote}</span>
+                            </p>
+                          )}
+                        </div>
+                      )}
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

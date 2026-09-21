@@ -55,7 +55,7 @@ export default function AppointmentBanner() {
         </svg>
 
         {/* 3D Anatomical Heart Model in Center-Right Background */}
-        <div className="absolute right-[6%] sm:right-[15%] lg:right-[20%] top-1/2 -translate-y-1/2 h-[115%] max-h-[210px] w-[160px] sm:w-[190px] opacity-85 mix-blend-screen">
+        <div className="absolute -right-6 bottom-0 h-[70%] max-h-[210px] w-[130px] opacity-40 mix-blend-screen sm:right-[15%] sm:top-1/2 sm:bottom-auto sm:h-[115%] sm:w-[190px] sm:-translate-y-1/2 sm:opacity-85 lg:right-[20%]">
           <img
             src={anatomicalHeart3D}
             alt=""
@@ -66,7 +66,7 @@ export default function AppointmentBanner() {
 
         {/* Luminous Neon Cardiac ECG Rhythm Wave */}
         <svg
-          className="absolute inset-0 h-full w-full opacity-95"
+          className="absolute inset-0 hidden h-full w-full opacity-95 md:block"
           viewBox="0 0 1440 140"
           preserveAspectRatio="none"
         >
@@ -145,9 +145,9 @@ export default function AppointmentBanner() {
           </div>
 
           {/* 3 Core Care Pillars / Features Matching Reference */}
-          <div className="mt-3 flex flex-wrap items-center gap-3 sm:gap-4 pt-1">
+          <div className="mt-3 grid grid-cols-3 gap-2 pt-1 sm:flex sm:flex-wrap sm:items-center sm:gap-4">
             {/* Pillar 1: Expert Heart Care */}
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:items-center sm:gap-2">
               <Heart size={18} strokeWidth={1.8} className="shrink-0 text-white/95" />
               <div className="text-[11px] font-medium leading-tight text-white">
                 <p className="font-semibold text-white">Expert</p>
@@ -159,7 +159,7 @@ export default function AppointmentBanner() {
             <span className="hidden h-6 w-[1px] bg-white/30 sm:block" />
 
             {/* Pillar 2: Compassionate Team */}
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:items-center sm:gap-2">
               <Users size={18} strokeWidth={1.8} className="shrink-0 text-white/95" />
               <div className="text-[11px] font-medium leading-tight text-white">
                 <p className="font-semibold text-white">Compassionate</p>
@@ -171,7 +171,7 @@ export default function AppointmentBanner() {
             <span className="hidden h-6 w-[1px] bg-white/30 sm:block" />
 
             {/* Pillar 3: A Healthier Tomorrow */}
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col items-start gap-1.5 sm:flex-row sm:items-center sm:gap-2">
               <ShieldCheck size={18} strokeWidth={1.8} className="shrink-0 text-white/95" />
               <div className="text-[11px] font-medium leading-tight text-white">
                 <p className="font-semibold text-white">A Healthier</p>

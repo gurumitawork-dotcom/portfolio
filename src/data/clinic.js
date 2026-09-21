@@ -113,9 +113,9 @@ export const PAGES_NAV = [
 
 export const HERO_CREDENTIALS = [
   `${CURRENT_ROLES[0].title} — ${CURRENT_ROLES[0].org}`,
-  `${CURRENT_ROLES[1].title} — ${CURRENT_ROLES[1].org}`,
+  CURRENT_ROLES[1].title,
   `${CURRENT_ROLES[2].title} — ${CURRENT_ROLES[2].org}`,
-  `${CURRENT_ROLES[3].title} — ${CURRENT_ROLES[3].org}`,
+  `${CURRENT_ROLES[3].title} — Internal Medicine Residency Program`,
   "Board certified: Internal Medicine, Cardiovascular Medicine, Interventional Cardiology, Echocardiography",
 ];
 

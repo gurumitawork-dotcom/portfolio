@@ -3,6 +3,7 @@ import TopBar from "./TopBar.jsx";
 import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
 import BackToTop from "./BackToTop.jsx";
+import CustomCursor from "./CustomCursor.jsx";
 import AppointmentBanner from "../clinic/AppointmentBanner.jsx";
 import ScrollToTop from "../utility/ScrollToTop.jsx";
 import PageMeta from "../utility/PageMeta.jsx";
@@ -24,6 +25,7 @@ export default function Layout() {
       {pathname !== "/" && <AppointmentBanner />}
       <Footer />
       <BackToTop />
+      <CustomCursor />
     </div>
   );
 }

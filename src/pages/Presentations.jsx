@@ -61,6 +61,8 @@ export default function Presentations() {
         eyebrow="Scholarship"
         title="Presentations"
         lede="Choose a meeting to open its program."
+        visual="speaker"
+        backdrop="imaging"
       />
 
       <section className="pb-6">

@@ -17,9 +17,14 @@ const AWARD_ICONS = [Trophy, Medal, Star, Award];
 export default function Recognition() {
   return (
     <>
-      <PageBanner eyebrow="Recognition" title="Awards, societies & editorial service" />
+      <PageBanner
+        eyebrow="Recognition"
+        title="Awards, societies & editorial service"
+        visual="doctor"
+        backdrop="glow"
+      />
 
-      <section className="pb-12">
+      <section className="pb-12 pt-10 sm:pt-16">
         <div className="container-lg">
           <Reveal className="glass-card relative overflow-hidden">
             <span className="absolute inset-y-0 left-0 w-[3px] bg-crimson-600" />

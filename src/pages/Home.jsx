@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import Reveal from "../components/ui/Reveal.jsx";
 import StatBand from "../components/clinic/StatBand.jsx";
-import CommitmentGrid from "../components/clinic/CommitmentGrid.jsx";
 import PracticeHighlight from "../components/clinic/PracticeHighlight.jsx";
 import ServicesSection from "../components/clinic/ServicesSection.jsx";
 import AppointmentBanner from "../components/clinic/AppointmentBanner.jsx";
@@ -156,8 +155,6 @@ export default function Home() {
       </section>
 
       <StatBand />
-
-      <CommitmentGrid variant="compact" />
 
       <PracticeHighlight />
 
