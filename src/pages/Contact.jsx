@@ -18,7 +18,7 @@ export default function Contact() {
       <section className="pb-8">
         <div className="container-lg grid items-start gap-6 lg:grid-cols-[1.5fr_1fr]">
           <div className="space-y-4">
-            <Reveal>
+            <Reveal id="appointment">
               <AppointmentForm />
             </Reveal>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -60,7 +60,7 @@ export default function Contact() {
           </div>
 
           <div className="space-y-4">
-            <Reveal delay={0.06} className="glass-card overflow-hidden">
+            <Reveal id="location" delay={0.06} className="glass-card overflow-hidden">
               <img
                 src={whiteRiverMedicalCenter}
                 alt="White River Medical Center, Batesville, Arkansas"

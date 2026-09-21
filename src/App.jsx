@@ -10,6 +10,7 @@ import Recognition from "./pages/Recognition.jsx";
 import Contact from "./pages/Contact.jsx";
 import Services from "./pages/Services.jsx";
 import NotFound from "./pages/NotFound.jsx";
+import Sitemap from "./pages/Sitemap.jsx";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/presentations" element={<Presentations />} />
         <Route path="/recognition" element={<Recognition />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/sitemap" element={<Sitemap />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

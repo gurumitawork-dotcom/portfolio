@@ -3,11 +3,20 @@ import Lenis from "lenis";
 
 let lenis = null;
 
+// Lets overlays (e.g. the mobile menu) pause/resume smooth scrolling.
+export function getLenis() {
+  return lenis;
+}
+
 // Scroll helper shared by ScrollToTop, back-to-top buttons and in-page jumps.
 // Uses Lenis when it's running, otherwise falls back to native scrolling.
 export function smoothScrollTo(target, { immediate = false, offset = 0 } = {}) {
   if (lenis) {
-    lenis.scrollTo(target, { immediate, offset });
+    // Re-measure page height (it changes on navigation) and force the scroll even if
+    // Lenis's cached position is stale, e.g. right after a native jump.
+    lenis.resize();
+    lenis.scrollTo(target, { immediate, offset, force: true });
+    if (immediate && typeof target === "number") window.scrollTo(0, target + offset);
     return;
   }
   const behavior = immediate ? "auto" : "smooth";
@@ -19,13 +28,20 @@ export function smoothScrollTo(target, { immediate = false, offset = 0 } = {}) {
   }
 }
 
-// Eased mouse-wheel scrolling. Touch scrolling stays native, and it's skipped
-// entirely for visitors who prefer reduced motion.
+// Eased scrolling for mouse wheel and touch (syncTouch gives phones the same glide
+// as desktop). Skipped entirely for visitors who prefer reduced motion.
 export default function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
 
-    lenis = new Lenis({ lerp: 0.09, smoothWheel: true, wheelMultiplier: 1 });
+    lenis = new Lenis({
+      lerp: 0.09,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      syncTouch: true,
+      syncTouchLerp: 0.085,
+      touchMultiplier: 1.1,
+    });
 
     let frame = 0;
     const raf = (time) => {

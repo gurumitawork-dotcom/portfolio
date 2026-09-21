@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import { Menu, ChevronDown, Phone } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PRIMARY_NAV, PAGES_NAV, CLINIC_PHONE_HREF } from "../../data/clinic.js";
 import { OFFICE } from "../../data/profile.js";
 import { maheshNav } from "../../assets/images/index.js";
+import MobileMenu from "./MobileMenu.jsx";
 
 function isLinkActive(pathname, to, end) {
   return end ? pathname === to : pathname === to || pathname.startsWith(to + "/");
@@ -18,6 +19,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [pages, setPages] = useState(false);
+  const [origin, setOrigin] = useState({ x: 0, y: 0 });
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -32,12 +34,16 @@ export default function Navbar() {
     setPages(false);
   }, [pathname]);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+  const closeMenu = useCallback(() => setOpen(false), []);
+
+  // Remember where the button was tapped so the circular reveal grows from that point
+  const openMenu = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX || rect.left + rect.width / 2;
+    const y = e.clientY || rect.top + rect.height / 2;
+    setOrigin({ x, y });
+    setOpen(true);
+  };
 
   const linkClass = (active) =>
     `relative shrink-0 whitespace-nowrap px-2.5 py-2 text-[13px] font-semibold tracking-[0.01em] transition-colors ${
@@ -118,63 +124,15 @@ export default function Navbar() {
 
         <button
           className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-slate-200 bg-white text-navy-900 lg:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle navigation"
+          onClick={openMenu}
+          aria-label="Open navigation"
           aria-expanded={open}
         >
-          {open ? <X size={20} /> : <Menu size={20} />}
+          <Menu size={20} />
         </button>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.22 }}
-            className="mx-3 mt-2 max-h-[min(32rem,calc(100dvh-6.5rem))] overflow-y-auto rounded-2xl border border-slate-100 bg-white shadow-lg sm:mx-4 lg:hidden"
-          >
-            <nav className="flex flex-col p-3">
-              {[...PRIMARY_NAV, { to: "/contact", label: "Contact" }].map((l) => {
-                const active = isLinkActive(pathname, l.to, l.to === "/");
-                return (
-                  <NavLink
-                    key={l.to}
-                    to={l.to}
-                    end={l.to === "/"}
-                    onClick={() => setOpen(false)}
-                    className={`rounded-xl px-4 py-3 text-sm font-medium ${
-                      active ? "bg-crimson-50 text-crimson-800" : "text-slate-700"
-                    }`}
-                  >
-                    {l.label}
-                  </NavLink>
-                );
-              })}
-              <p className="px-4 pb-1 pt-3 text-[11px] font-bold uppercase tracking-[0.14em] text-crimson-700">Pages</p>
-              {PAGES_NAV.map((l) => {
-                const active = isLinkActive(pathname, l.to, false);
-                return (
-                  <NavLink
-                    key={l.to}
-                    to={l.to}
-                    onClick={() => setOpen(false)}
-                    className={`rounded-xl px-4 py-3 text-sm font-medium ${
-                      active ? "bg-crimson-50 text-crimson-800" : "text-slate-700"
-                    }`}
-                  >
-                    {l.label}
-                  </NavLink>
-                );
-              })}
-              <a href={CLINIC_PHONE_HREF} className="btn-primary mt-2 justify-center">
-                <Phone size={16} /> Book Appointment · {OFFICE.phone}
-              </a>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <MobileMenu open={open} origin={origin} pathname={pathname} onClose={closeMenu} />
     </div>
   );
 }

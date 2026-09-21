@@ -78,6 +78,15 @@
   .cursor-ring.is-down {
     @apply h-7 w-7 -ml-3.5 -mt-3.5;
   }
+
+  /* Touch ink ripple (TouchRipple.jsx) */
+  .touch-ripple-layer {
+    @apply pointer-events-none fixed inset-0 z-[70] overflow-hidden;
+  }
+  .touch-ripple {
+    @apply absolute h-24 w-24 rounded-full bg-crimson-500/30;
+    will-change: transform, opacity;
+  }
 }
 
 @layer components {

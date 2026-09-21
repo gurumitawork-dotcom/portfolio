@@ -4,6 +4,7 @@ import Navbar from "./Navbar.jsx";
 import Footer from "./Footer.jsx";
 import BackToTop from "./BackToTop.jsx";
 import CustomCursor from "./CustomCursor.jsx";
+import TouchRipple from "./TouchRipple.jsx";
 import AppointmentBanner from "../clinic/AppointmentBanner.jsx";
 import ScrollToTop from "../utility/ScrollToTop.jsx";
 import SmoothScroll from "../utility/SmoothScroll.jsx";
@@ -17,7 +18,7 @@ export default function Layout() {
       <PageMeta />
       <SmoothScroll />
       <ScrollToTop />
-      <div className="fixed inset-x-0 top-0 z-50">
+      <div id="site-header" className="fixed inset-x-0 top-0 z-50">
         <TopBar />
         <Navbar />
       </div>
@@ -28,6 +29,7 @@ export default function Layout() {
       <Footer />
       <BackToTop />
       <CustomCursor />
+      <TouchRipple />
     </div>
   );
 }

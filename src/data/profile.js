@@ -112,3 +112,11 @@ export const FOCUS_AREAS = [
     note: "Informed by fellowship training at Yale-New Haven Hospital.",
   },
 ];
+
+// Official social profiles (footer icons)
+export const SOCIAL_LINKS = [
+  { name: "facebook", label: "Facebook", href: "https://www.facebook.com/DrAnanthaMD" },
+  { name: "instagram", label: "Instagram", href: "https://www.instagram.com/drananthaheart?stkn=MXYzYndwanJrYXVxNw==" },
+  { name: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/mahesh-anantha-narayanan-md-facc-fscai-2087564a/" },
+  { name: "youtube", label: "YouTube", href: "https://www.youtube.com/@DrMaheshAnantha" },
+];

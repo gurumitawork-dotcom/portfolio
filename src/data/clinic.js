@@ -173,6 +173,10 @@ export const PAGE_META = {
     description:
       "Awards, society fellowships, editorial boards, and medals for Mahesh Anantha, interventional cardiologist in Batesville, AR.",
   },
+  "/sitemap": {
+    title: "Sitemap | Mahesh Anantha, MD",
+    description: "Every page and section on Dr. Mahesh Anantha's website, in one place.",
+  },
   "/contact": {
     title: "Contact | White River Health Cardiology | Batesville, AR 72501",
     description:

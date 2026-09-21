@@ -14,6 +14,7 @@ export default function Reveal({
   as = "div",
   once = true,
   immediate = false,
+  id,
 }) {
   const MotionTag = motion[as] || motion.div;
   const motionProps = immediate
@@ -29,6 +30,7 @@ export default function Reveal({
 
   return (
     <MotionTag
+      id={id}
       className={className}
       {...motionProps}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}

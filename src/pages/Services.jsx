@@ -49,7 +49,7 @@ export default function Services() {
 
             return (
               <Reveal key={s.id} delay={i * 0.04}>
-                <article className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
+                <article id={s.id} className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
                   {/* Photo */}
                   <div className={`relative ${reversed ? "lg:order-2" : ""}`}>
                     <span

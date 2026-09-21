@@ -1,44 +1,38 @@
 import { Link } from "react-router-dom";
-import {
-  ChevronRight,
-  ChevronUp,
-  Clock,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Youtube,
-} from "lucide-react";
-import { CLINIC_PHONE_HREF } from "../../data/clinic.js";
+import { ChevronRight, ChevronUp, Clock, Mail, MapPin, Phone } from "lucide-react";
+import BrandIcon from "../ui/BrandIcon.jsx";
+import { SOCIAL_LINKS } from "../../data/profile.js";
+import { CLINIC_PHONE_HREF, CLINIC_SERVICES } from "../../data/clinic.js";
 import { smoothScrollTo } from "../utility/SmoothScroll.jsx";
+
+const SOCIAL_STYLES = {
+  facebook: "bg-[#1877F2]",
+  instagram: "bg-[radial-gradient(circle_at_30%_107%,#fdf497_0%,#fdf497_5%,#fd5949_45%,#d6249f_60%,#285AEB_90%)]",
+  linkedin: "bg-[#0A66C2]",
+  youtube: "bg-[#FF0000]",
+};
 
 const QUICK_LINKS = [
   { label: "Home", to: "/" },
-  { label: "About Us", to: "/about" },
+  { label: "About the Doctor", to: "/about" },
   { label: "Our Services", to: "/services" },
-  { label: "Meet Our Team", to: "/about" },
-  { label: "Patient Resources", to: "/training" },
+  { label: "Training & Practice", to: "/training" },
+  { label: "Teaching & Research", to: "/teaching" },
   { label: "Contact", to: "/contact" },
 ];
 
+// Each link jumps to that service's section on the Services page
 const SERVICES_LINKS = [
-  { label: "General Cardiology", to: "/services" },
-  { label: "Interventional Cardiology", to: "/services" },
-  { label: "Preventive Cardiology", to: "/services" },
-  { label: "Diagnostic Testing", to: "/services" },
-  { label: "Heart Failure Care", to: "/services" },
-  { label: "Rehabilitation", to: "/services" },
+  { label: "All Services", to: "/services" },
+  ...CLINIC_SERVICES.map((s) => ({ label: s.title, to: `/services#${s.id}` })),
 ];
 
 const PATIENT_LINKS = [
-  { label: "Appointments", to: "/contact" },
-  { label: "Insurance & Billing", to: "/contact" },
-  { label: "Patient Forms", to: "/contact" },
-  { label: "Locations", to: "/contact" },
-  { label: "FAQs", to: "/about" },
-  { label: "Health Library", to: "/publications" },
+  { label: "Request an Appointment", to: "/contact#appointment" },
+  { label: "Call the Office", href: CLINIC_PHONE_HREF },
+  { label: "Location & Directions", to: "/contact#location" },
+  { label: "Office Hours", to: "/contact" },
+  { label: "Research & Publications", to: "/publications" },
 ];
 
 export default function Footer() {
@@ -147,44 +141,21 @@ export default function Footer() {
               healthier, fuller life.
             </p>
 
-            {/* Social Media Links */}
+            {/* Social Media Links: official brand marks in brand colours */}
             <div className="mt-6 flex items-center gap-3">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Facebook"
-                className="grid h-10 w-10 place-items-center rounded-full bg-slate-900/80 border border-slate-700/60 text-slate-300 transition-all duration-200 hover:border-crimson-500 hover:bg-crimson-600 hover:text-white"
-              >
-                <Facebook size={17} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Instagram"
-                className="grid h-10 w-10 place-items-center rounded-full bg-slate-900/80 border border-slate-700/60 text-slate-300 transition-all duration-200 hover:border-crimson-500 hover:bg-crimson-600 hover:text-white"
-              >
-                <Instagram size={17} />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                className="grid h-10 w-10 place-items-center rounded-full bg-slate-900/80 border border-slate-700/60 text-slate-300 transition-all duration-200 hover:border-crimson-500 hover:bg-crimson-600 hover:text-white"
-              >
-                <Linkedin size={17} />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="YouTube"
-                className="grid h-10 w-10 place-items-center rounded-full bg-slate-900/80 border border-slate-700/60 text-slate-300 transition-all duration-200 hover:border-crimson-500 hover:bg-crimson-600 hover:text-white"
-              >
-                <Youtube size={17} />
-              </a>
+              {SOCIAL_LINKS.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Dr. Mahesh Anantha on ${social.label} (opens in a new tab)`}
+                  title={social.label}
+                  className={`grid h-10 w-10 place-items-center rounded-full text-white shadow-md ring-1 ring-white/10 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110 ${SOCIAL_STYLES[social.name]}`}
+                >
+                  <BrandIcon name={social.name} size={18} />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -243,20 +214,32 @@ export default function Footer() {
             </h4>
             <div className="mt-2.5 mb-5 h-[2px] w-7 rounded-full bg-crimson-600" />
             <ul className="space-y-3">
-              {PATIENT_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    to={link.to}
-                    className="group flex items-center justify-between text-[13.5px] text-slate-300 transition-colors hover:text-white"
-                  >
+              {PATIENT_LINKS.map((link) => {
+                const cls =
+                  "group flex items-center justify-between text-[13.5px] text-slate-300 transition-colors hover:text-white";
+                const body = (
+                  <>
                     <span>{link.label}</span>
                     <ChevronRight
                       size={14}
                       className="text-slate-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-crimson-400"
                     />
-                  </Link>
-                </li>
-              ))}
+                  </>
+                );
+                return (
+                  <li key={link.label}>
+                    {link.href ? (
+                      <a href={link.href} className={cls}>
+                        {body}
+                      </a>
+                    ) : (
+                      <Link to={link.to} className={cls}>
+                        {body}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
@@ -327,20 +310,12 @@ export default function Footer() {
 
           {/* Legal / Policy Links */}
           <div className="flex flex-wrap items-center justify-center gap-3 text-slate-400">
-            <Link to="/contact" className="hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <span className="text-slate-600">|</span>
-            <Link to="/contact" className="hover:text-white transition-colors">
-              Terms of Service
-            </Link>
-            <span className="text-slate-600">|</span>
-            <Link to="/contact" className="hover:text-white transition-colors">
-              Accessibility
-            </Link>
-            <span className="text-slate-600">|</span>
-            <Link to="/contact" className="hover:text-white transition-colors">
+            <Link to="/sitemap" className="hover:text-white transition-colors">
               Sitemap
+            </Link>
+            <span className="text-slate-600">|</span>
+            <Link to="/contact" className="hover:text-white transition-colors">
+              Contact
             </Link>
           </div>
 
