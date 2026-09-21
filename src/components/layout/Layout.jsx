@@ -6,6 +6,7 @@ import BackToTop from "./BackToTop.jsx";
 import CustomCursor from "./CustomCursor.jsx";
 import AppointmentBanner from "../clinic/AppointmentBanner.jsx";
 import ScrollToTop from "../utility/ScrollToTop.jsx";
+import SmoothScroll from "../utility/SmoothScroll.jsx";
 import PageMeta from "../utility/PageMeta.jsx";
 
 export default function Layout() {
@@ -14,6 +15,7 @@ export default function Layout() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-paper-50">
       <PageMeta />
+      <SmoothScroll />
       <ScrollToTop />
       <div className="fixed inset-x-0 top-0 z-50">
         <TopBar />

@@ -5,7 +5,7 @@ import AppointmentForm from "../components/forms/AppointmentForm.jsx";
 import { Phone, Smartphone, MapPin, Download, Navigation } from "lucide-react";
 import { OFFICE } from "../data/profile.js";
 import { VOLUNTEER, LANGUAGES, HOBBY_LIST } from "../data/recognition.js";
-import { maheshClinic } from "../assets/images/index.js";
+import { whiteRiverMedicalCenter } from "../assets/images/index.js";
 import { CLINIC_PHONE_HREF } from "../data/clinic.js";
 
 const MAP_QUERY = encodeURIComponent(`${OFFICE.name}, ${OFFICE.address.join(", ")}`);
@@ -61,7 +61,11 @@ export default function Contact() {
 
           <div className="space-y-4">
             <Reveal delay={0.06} className="glass-card overflow-hidden">
-              <img src={maheshClinic} alt="Mahesh Anantha Narayanan" className="aspect-[3/2] h-auto w-full object-cover object-[center_18%]" />
+              <img
+                src={whiteRiverMedicalCenter}
+                alt="White River Medical Center, Batesville, Arkansas"
+                className="aspect-[3/2] h-auto w-full object-cover object-[85%_center]"
+              />
               <div className="flex items-start gap-4 p-5">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-crimson-50 text-crimson-700">
                   <MapPin size={18} />

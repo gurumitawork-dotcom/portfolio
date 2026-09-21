@@ -6,6 +6,7 @@ import { PUBLICATIONS, BOOK_CHAPTERS } from "../data/citations.js";
 import { renderCitation } from "../utils/text.js";
 import { TOPICS, publicationTopic, groupByYear } from "../utils/publications.js";
 import { publicationsStethoscope } from "../assets/images/index.js";
+import { smoothScrollTo } from "../components/utility/SmoothScroll.jsx";
 
 const FILTERS = ["All", ...TOPICS, "Chapters"];
 
@@ -65,7 +66,7 @@ export default function Publications() {
 
   const pickTopic = (name) => {
     setTopic(name);
-    listRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    smoothScrollTo(listRef.current, { offset: -96 });
   };
 
   return (

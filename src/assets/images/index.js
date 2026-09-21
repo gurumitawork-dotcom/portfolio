@@ -5,6 +5,8 @@ export { default as maheshHeart } from "./doctor/mahesh-heart.webp";
 export { default as maheshMeet } from "./doctor/mahesh-meet.webp";
 export { default as maheshHero } from "./doctor/mahesh-hero.webp";
 export { default as maheshBanner } from "./doctor/mahesh-banner.webp";
+export { default as maheshUrl } from "./doctor/mahesh-url.webp";
+export { default as whiteRiverMedicalCenter } from "./doctor/white-river-medical-center.webp";
 export { default as teachingAnatomyHeart } from "./doctor/teaching-anatomy-heart.webp";
 export { default as trainingCoronaryHeart } from "./doctor/training-coronary-heart.webp";
 export { default as publicationsCathLab } from "./doctor/publications-cath-angiogram.webp";

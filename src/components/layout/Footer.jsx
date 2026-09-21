@@ -12,6 +12,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { CLINIC_PHONE_HREF } from "../../data/clinic.js";
+import { smoothScrollTo } from "../utility/SmoothScroll.jsx";
 
 const QUICK_LINKS = [
   { label: "Home", to: "/" },
@@ -42,7 +43,7 @@ const PATIENT_LINKS = [
 
 export default function Footer() {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    smoothScrollTo(0);
   };
 
   return (

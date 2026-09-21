@@ -21,8 +21,8 @@ export default function AboutHero() {
             <span />
           </p>
           <h1>
-            Mahesh Anantha
-            <span>Narayanan</span>
+            Mahesh
+            <span>Anantha</span>
           </h1>
           <p className="about-hero-creds">{DOCTOR_SPOTLIGHT.credentials}</p>
           <p className="about-hero-org">{DOCTOR_SPOTLIGHT.org}</p>
@@ -36,7 +36,7 @@ export default function AboutHero() {
         <Reveal immediate delay={0.06} className="about-hero-portrait">
           <div className="about-hero-backdrop" aria-hidden="true" />
           <div className="about-hero-frame">
-            <img src={maheshPortrait} alt="Mahesh Anantha Narayanan" />
+            <img src={maheshPortrait} alt="Mahesh Anantha" />
           </div>
 
           <div className="about-hero-stat-chip">

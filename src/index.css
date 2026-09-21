@@ -7,6 +7,20 @@
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
   }
+  /* Lenis smooth scrolling (from lenis/dist/lenis.css; native smooth-scroll must be off while it runs) */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  html.lenis {
+    scroll-behavior: auto;
+  }
+  .lenis:not(.lenis-autoToggle).lenis-stopped {
+    overflow: clip;
+  }
+  .lenis [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
   body {
     @apply bg-paper-50 text-slate-700 font-sans antialiased;
     overflow-x: hidden;

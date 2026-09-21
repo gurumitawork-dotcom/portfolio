@@ -74,8 +74,6 @@ export default function Home() {
               </p>
               <h1>
                 Mahesh Anantha
-                <br />
-                Narayanan
               </h1>
               <p className="home-hero-credentials">{DOCTOR_SPOTLIGHT.credentials}</p>
               <ul className="home-hero-roles">
@@ -129,7 +127,7 @@ export default function Home() {
               <div className="home-hero-image">
                 <img
                   src={maheshHero}
-                  alt="Mahesh Anantha Narayanan holding an anatomical heart model"
+                  alt="Mahesh Anantha holding an anatomical heart model"
                 />
               </div>
             </Reveal>

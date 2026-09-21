@@ -144,7 +144,7 @@ export default function PracticeHighlight() {
                 <div className="relative aspect-[4/4.2] overflow-hidden">
                   <img
                     src={maheshClinic}
-                    alt="Dr. Mahesh Anantha Narayanan in clinic"
+                    alt="Dr. Mahesh Anantha in clinic"
                     className="h-full w-full object-cover object-[center_16%] filter brightness-[0.96] contrast-[1.02] transition-transform duration-500 hover:scale-[1.03]"
                   />
 
@@ -167,7 +167,7 @@ export default function PracticeHighlight() {
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-[14px] font-bold text-white">
-                          Dr. Mahesh Anantha Narayanan
+                          Dr. Mahesh Anantha
                         </p>
                         <p className="text-[11.5px] font-medium text-crimson-300">
                           Program Founder & Physician Director

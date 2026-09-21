@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { PAGE_META } from "../../data/clinic.js";
 
-const SITE = "Mahesh Anantha Narayanan, MD";
+const SITE = "Mahesh Anantha, MD";
 
 export default function PageMeta() {
   const { pathname } = useLocation();

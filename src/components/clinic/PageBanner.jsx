@@ -17,13 +17,13 @@ import {
 } from "../../assets/images/index.js";
 
 const VISUALS = {
-  banner: { src: maheshBanner, alt: "Mahesh Anantha Narayanan", position: "object-[78%_center]" },
-  doctor: { src: maheshPortrait, alt: "Mahesh Anantha Narayanan", position: "object-[center_18%]" },
-  heart: { src: maheshHeart, alt: "Mahesh Anantha Narayanan holding an anatomical heart model", position: "object-[center_30%]" },
-  clinic: { src: maheshClinic, alt: "Mahesh Anantha Narayanan in his clinic", position: "object-[center_25%]" },
-  meet: { src: maheshMeet, alt: "Mahesh Anantha Narayanan", position: "object-[center_20%]" },
-  study: { src: maheshNav, alt: "Mahesh Anantha Narayanan", position: "object-[center_15%]" },
-  speaker: { src: maheshHero, alt: "Mahesh Anantha Narayanan explaining with an anatomical heart model", position: "object-[20%_center]" },
+  banner: { src: maheshBanner, alt: "Mahesh Anantha", position: "object-[78%_center]" },
+  doctor: { src: maheshPortrait, alt: "Mahesh Anantha", position: "object-[center_18%]" },
+  heart: { src: maheshHeart, alt: "Mahesh Anantha holding an anatomical heart model", position: "object-[center_30%]" },
+  clinic: { src: maheshClinic, alt: "Mahesh Anantha in his clinic", position: "object-[center_25%]" },
+  meet: { src: maheshMeet, alt: "Mahesh Anantha", position: "object-[center_20%]" },
+  study: { src: maheshNav, alt: "Mahesh Anantha", position: "object-[center_15%]" },
+  speaker: { src: maheshHero, alt: "Mahesh Anantha explaining with an anatomical heart model", position: "object-[20%_center]" },
 };
 
 const BACKDROPS = {

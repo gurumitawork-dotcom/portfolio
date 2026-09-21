@@ -14,7 +14,7 @@ export default function AboutPractice() {
         <Reveal className="about-practice-panel">
           <div className="about-practice-side">
             <figure className="about-practice-photo">
-              <img src={maheshMeet} alt="Mahesh Anantha Narayanan in consultation" />
+              <img src={maheshMeet} alt="Mahesh Anantha in consultation" />
             </figure>
 
             <div className="about-practice-badges">

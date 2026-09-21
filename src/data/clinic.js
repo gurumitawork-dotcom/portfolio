@@ -91,7 +91,7 @@ export const HERO_COPY = {
 };
 
 export const DOCTOR_SPOTLIGHT = {
-  name: "Mahesh Anantha Narayanan",
+  name: "Mahesh Anantha",
   credentials: "MD, FACC, FSCAI, FSVM",
   org: "White River Health · University of Arkansas for Medical Sciences",
   bio: "Physician Director of Cardiovascular Services and Director of the Complex Coronary & Amputation Prevention Program. Assistant Professor at UAMS and faculty in the White River Health Internal Medicine Residency.",
@@ -134,14 +134,14 @@ export const COMMITMENT_PILLARS = CLINIC_SERVICES.map((s) => ({
 
 export const PAGE_META = {
   "/": {
-    title: "Mahesh Anantha Narayanan, MD, FACC, FSCAI, FSVM | Interventional Cardiologist, Batesville AR",
+    title: "Mahesh Anantha, MD, FACC, FSCAI, FSVM | Interventional Cardiologist, Batesville AR",
     description:
       "Physician Director of Cardiovascular Services at White River Health. Complex coronary intervention and amputation prevention in Batesville, Arkansas. Assistant Professor, UAMS.",
   },
   "/about": {
-    title: "About Dr. Mahesh Anantha Narayanan | White River Health Cardiology",
+    title: "About Dr. Mahesh Anantha | White River Health Cardiology",
     description:
-      "Meet Mahesh Anantha Narayanan, MD, FACC, FSCAI, FSVM — interventional and endovascular cardiologist at White River Health and Assistant Professor at UAMS.",
+      "Meet Mahesh Anantha, MD, FACC, FSCAI, FSVM — interventional and endovascular cardiologist at White River Health and Assistant Professor at UAMS.",
   },
   "/services": {
     title: "Cardiac Services | Complex Coronary & Amputation Prevention | Batesville AR",
@@ -149,29 +149,29 @@ export const PAGE_META = {
       "CV-true services: complex coronary intervention, amputation prevention, peripheral and venous care, and teaching faculty at White River Health.",
   },
   "/training": {
-    title: "Training & Practice | Mahesh Anantha Narayanan, MD",
+    title: "Training & Practice | Mahesh Anantha, MD",
     description:
       "Fellowship training at Yale, Arizona, Minnesota, and current 1,000-case-a-year interventional practice at White River Health, Batesville, AR.",
   },
   "/teaching": {
-    title: "Teaching & Research | CIMS, CRT, CVI | Mahesh Anantha Narayanan, MD",
+    title: "Teaching & Research | CIMS, CRT, CVI | Mahesh Anantha, MD",
     description:
       "Founder of CIMS at Creighton, residency faculty at White River Health, and national case-based teaching at CRT, CTO, and CVI.",
   },
   "/publications": {
-    title: "Publications | 54 Peer-Reviewed Papers, h-index 17 | Mahesh Anantha Narayanan, MD",
+    title: "Publications | 54 Peer-Reviewed Papers, h-index 17 | Mahesh Anantha, MD",
     description:
-      "Search 54 peer-reviewed publications and book chapters by Mahesh Anantha Narayanan, MD. Google Scholar snapshot: 1,010 citations, h-index 17.",
+      "Search 54 peer-reviewed publications and book chapters by Mahesh Anantha, MD. Google Scholar snapshot: 1,010 citations, h-index 17.",
   },
   "/presentations": {
-    title: "Presentations | CRT, CVI, ACC, SCAI | Mahesh Anantha Narayanan, MD",
+    title: "Presentations | CRT, CVI, ACC, SCAI | Mahesh Anantha, MD",
     description:
       "58 oral and poster presentations at CRT, CVI, ACC, SCAI, TCT, AHA, and other national meetings.",
   },
   "/recognition": {
-    title: "Awards & Recognition | FACC, FSCAI, FSVM | Mahesh Anantha Narayanan, MD",
+    title: "Awards & Recognition | FACC, FSCAI, FSVM | Mahesh Anantha, MD",
     description:
-      "Awards, society fellowships, editorial boards, and medals for Mahesh Anantha Narayanan, interventional cardiologist in Batesville, AR.",
+      "Awards, society fellowships, editorial boards, and medals for Mahesh Anantha, interventional cardiologist in Batesville, AR.",
   },
   "/contact": {
     title: "Contact | White River Health Cardiology | Batesville, AR 72501",
