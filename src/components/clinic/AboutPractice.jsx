@@ -1,7 +1,7 @@
 import { GraduationCap, HeartPulse, MapPin, Phone, ShieldCheck, Stethoscope, Users } from "lucide-react";
 import Reveal from "../ui/Reveal.jsx";
 import { heartEcgGlow, heartHandsCare, heartLightGlow, maheshMeet } from "../../assets/images/index.js";
-import { CLINIC_PHONE_HREF, DOCTOR_SPOTLIGHT } from "../../data/clinic.js";
+import { CLINIC_MAP_HREF, CLINIC_PHONE_HREF, DOCTOR_SPOTLIGHT } from "../../data/clinic.js";
 import { CURRENT_ROLES, OFFICE, PRACTICE_FACTS } from "../../data/profile.js";
 import { BOARD_CERTIFICATION } from "../../data/training.js";
 
@@ -73,9 +73,9 @@ export default function AboutPractice() {
               <div className="about-practice-contact">
                 <p>
                   {OFFICE.name}
-                  <span>
+                  <a href={CLINIC_MAP_HREF} target="_blank" rel="noopener noreferrer" title="Open in Google Maps" className="hover:!text-crimson-700">
                     {OFFICE.address[0]}, {OFFICE.address[1]}
-                  </span>
+                  </a>
                 </p>
                 <a className="btn-primary" href={CLINIC_PHONE_HREF}>
                   <Phone size={16} />

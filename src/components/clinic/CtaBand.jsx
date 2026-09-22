@@ -1,6 +1,6 @@
 import { Phone } from "lucide-react";
 import { OFFICE } from "../../data/profile.js";
-import { CLINIC_PHONE_HREF } from "../../data/clinic.js";
+import { CLINIC_MAP_HREF, CLINIC_PHONE_HREF } from "../../data/clinic.js";
 import { maheshHeart } from "../../assets/images/index.js";
 
 export default function CtaBand() {
@@ -18,9 +18,9 @@ export default function CtaBand() {
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.16em] text-white/80">Need an appointment?</p>
           <h2 className="mt-2 text-2xl font-semibold text-white sm:text-3xl">Call the Batesville office</h2>
-          <p className="mt-2 text-sm text-white/85">
+          <a href={CLINIC_MAP_HREF} target="_blank" rel="noopener noreferrer" title="Open in Google Maps" className="mt-2 block text-sm text-white/85 underline-offset-4 hover:text-white hover:underline">
             {OFFICE.name} · {OFFICE.address.join(", ")}
-          </p>
+          </a>
         </div>
         <a href={CLINIC_PHONE_HREF} className="btn bg-white text-crimson-700 shadow-lg hover:-translate-y-0.5 hover:bg-paper-50">
           <Phone size={16} /> {OFFICE.phone}

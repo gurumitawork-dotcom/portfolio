@@ -30,6 +30,9 @@ export const OFFICE = {
   address: ["16 Hospital Circle", "Batesville, AR 72501"],
   phone: "870-262-1600",
   mobile: "507-319-2446",
+  email: "contact@whrcardiology.com",
+  // Number that WhatsApp chats open to (must be registered on WhatsApp)
+  whatsapp: "507-319-2446",
 };
 
 export const PRACTICE_FACTS = {

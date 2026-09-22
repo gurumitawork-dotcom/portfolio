@@ -22,6 +22,7 @@ export { default as anatomicalHeart3D } from "./anatomical_heart_3d_178851552582
 export { default as heartEcgGlow } from "./heart_ecg_glow.webp";
 export { default as heartHandsCare } from "./heart_hands_care.webp";
 export { default as heartLightGlow } from "./heart_light_glow.webp";
+export { default as heartMini } from "./heart-mini.webp";
 export { default as pillarsBg } from "./pillars_bg.webp";
 export { default as heartHandsGlow } from "./heart_hands_glow.webp";
 export { default as structuralHeartGlow } from "./structural_heart_glow.webp";

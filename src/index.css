@@ -295,14 +295,15 @@
   .about-hero-quote-chip {
     @apply absolute -bottom-4 -right-3 z-[2] max-w-[10.5rem] overflow-hidden rounded-xl bg-white p-3.5 shadow-[0_20px_45px_-20px_rgba(15,23,42,0.3)] sm:-right-5 sm:max-w-[11.5rem] sm:p-4;
   }
+  /* Whole heart, fully inside the card, beside the quote mark */
   .about-hero-quote-chip img {
-    @apply pointer-events-none absolute -right-6 -bottom-8 w-24 opacity-[0.15];
+    @apply pointer-events-none absolute right-3 top-2.5 h-10 w-10 object-contain drop-shadow-[0_4px_8px_rgba(193,31,56,0.25)];
   }
   .about-hero-marks {
     @apply relative block font-serif text-2xl leading-none text-crimson-500;
   }
   .about-hero-quote-chip p {
-    @apply relative mt-1 text-[12px] leading-relaxed text-navy-800;
+    @apply relative mt-3 text-[12px] leading-relaxed text-navy-800;
   }
 
   .about-practice {
@@ -392,7 +393,8 @@
   .about-practice-contact p {
     @apply text-sm font-semibold text-navy-900;
   }
-  .about-practice-contact span {
+  .about-practice-contact span,
+  .about-practice-contact p a {
     @apply mt-0.5 block text-[13px] font-normal text-slate-500;
   }
   .about-practice-contact .btn-primary {

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Heart, MapPin, Phone, ShieldCheck, Users } from "lucide-react";
 import { OFFICE } from "../../data/profile.js";
-import { CLINIC_PHONE_HREF } from "../../data/clinic.js";
+import { CLINIC_MAP_HREF, CLINIC_PHONE_HREF } from "../../data/clinic.js";
 import { anatomicalHeart3D } from "../../assets/images/index.js";
 
 export default function AppointmentBanner() {
@@ -139,10 +139,13 @@ export default function AppointmentBanner() {
           </h2>
 
           {/* Location with Pin Icon */}
-          <div className="mt-1.5 flex items-center gap-2 text-[12.5px] font-medium text-white/95 sm:text-[13.5px]">
+          <a
+            href={CLINIC_MAP_HREF} target="_blank" rel="noopener noreferrer" title="Open in Google Maps"
+            className="mt-1.5 flex w-fit items-center gap-2 text-[12.5px] font-medium text-white/95 underline-offset-4 hover:underline sm:text-[13.5px]"
+          >
             <MapPin size={14} className="shrink-0 text-white fill-white/20" />
             <span>{OFFICE.address.join(", ")}</span>
-          </div>
+          </a>
 
           {/* 3 Core Care Pillars / Features Matching Reference */}
           <div className="mt-3 grid grid-cols-3 gap-2 pt-1 sm:flex sm:flex-wrap sm:items-center sm:gap-4">

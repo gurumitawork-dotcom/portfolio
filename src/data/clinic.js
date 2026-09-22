@@ -14,6 +14,16 @@ import {
 
 export const CLINIC_PHONE_HREF = `tel:+1${OFFICE.phone.replace(/\D/g, "")}`;
 
+// Opens the office in Google Maps (app on phones, website on desktop)
+export const CLINIC_MAP_HREF = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  `${OFFICE.name}, ${OFFICE.address.join(", ")}`
+)}`;
+
+// Opens a WhatsApp chat with the practice (app on phones, WhatsApp Web on desktop)
+export const CLINIC_WHATSAPP_HREF = `https://wa.me/1${OFFICE.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
+  "Hello, I'd like to get in touch with White River Health Cardiology."
+)}`;
+
 export const CLINIC_SERVICES = [
   {
     id: "coronary",
@@ -113,7 +123,7 @@ export const PAGES_NAV = [
 
 export const HERO_CREDENTIALS = [
   `${CURRENT_ROLES[0].title} — ${CURRENT_ROLES[0].org}`,
-  CURRENT_ROLES[1].title,
+  `${CURRENT_ROLES[1].title} — ${CURRENT_ROLES[1].org}`,
   `${CURRENT_ROLES[2].title} — ${CURRENT_ROLES[2].org}`,
   `${CURRENT_ROLES[3].title} — Internal Medicine Residency Program`,
   "Board certified: Internal Medicine, Cardiovascular Medicine, Interventional Cardiology, Echocardiography",

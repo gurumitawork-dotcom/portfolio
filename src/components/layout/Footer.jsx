@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { ChevronRight, ChevronUp, Clock, Mail, MapPin, Phone } from "lucide-react";
+import { ChevronRight, ChevronUp, Clock, Mail, MapPin } from "lucide-react";
 import BrandIcon from "../ui/BrandIcon.jsx";
-import { SOCIAL_LINKS } from "../../data/profile.js";
-import { CLINIC_PHONE_HREF, CLINIC_SERVICES } from "../../data/clinic.js";
+import { OFFICE, SOCIAL_LINKS } from "../../data/profile.js";
+import EmailLink from "../ui/EmailLink.jsx";
+import { CLINIC_MAP_HREF, CLINIC_PHONE_HREF, CLINIC_SERVICES, CLINIC_WHATSAPP_HREF } from "../../data/clinic.js";
 import { smoothScrollTo } from "../utility/SmoothScroll.jsx";
 
 const SOCIAL_STYLES = {
@@ -255,21 +256,31 @@ export default function Footer() {
                 <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-crimson-600 text-white shadow-sm">
                   <MapPin size={15} />
                 </span>
-                <span className="pt-0.5 leading-snug">
-                  16 Hospital Circle, Batesville, AR 72501
-                </span>
+                <a
+                  href={CLINIC_MAP_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Open in Google Maps"
+                  className="pt-0.5 leading-snug transition-colors hover:text-crimson-300"
+                >
+                  {OFFICE.address.join(", ")}
+                </a>
               </li>
 
-              {/* Phone */}
+              {/* Contact: opens a WhatsApp chat */}
               <li className="flex items-center gap-3">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-crimson-600 text-white shadow-sm">
-                  <Phone size={15} />
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-[#25D366] text-white shadow-sm">
+                  <BrandIcon name="whatsapp" size={15} />
                 </span>
                 <a
-                  href={CLINIC_PHONE_HREF}
+                  href={CLINIC_WHATSAPP_HREF}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Chat on WhatsApp"
                   className="font-semibold text-white transition-colors hover:text-crimson-300"
                 >
-                  870-262-1600
+                  {OFFICE.whatsapp}
+                  <span className="block text-[11px] font-medium text-slate-400">Chat on WhatsApp</span>
                 </a>
               </li>
 
@@ -278,12 +289,7 @@ export default function Footer() {
                 <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-crimson-600 text-white shadow-sm">
                   <Mail size={15} />
                 </span>
-                <a
-                  href="mailto:contact@whrcardiology.com"
-                  className="transition-colors hover:text-crimson-300"
-                >
-                  contact@whrcardiology.com
-                </a>
+                <EmailLink email={OFFICE.email} className="text-left transition-colors hover:text-crimson-300" />
               </li>
 
               {/* Hours */}

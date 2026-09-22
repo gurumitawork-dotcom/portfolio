@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Reveal from "../ui/Reveal.jsx";
-import { maheshPortrait, anatomicalHeart3D, heartHandsGlow } from "../../assets/images/index.js";
+import { maheshPortrait, heartMini, heartHandsGlow } from "../../assets/images/index.js";
 import { DOCTOR_SPOTLIGHT } from "../../data/clinic.js";
 import { STATS } from "../../data/profile.js";
 
@@ -48,7 +48,7 @@ export default function AboutHero() {
           </div>
 
           <div className="about-hero-quote-chip">
-            <img src={anatomicalHeart3D} alt="" aria-hidden="true" />
+            <img src={heartMini} alt="" aria-hidden="true" />
             <span className="about-hero-marks" aria-hidden="true">
               “
             </span>

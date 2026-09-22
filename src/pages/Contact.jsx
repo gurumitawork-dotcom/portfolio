@@ -2,11 +2,13 @@ import ContactBanner from "../components/clinic/ContactBanner.jsx";
 import Reveal from "../components/ui/Reveal.jsx";
 import ProficiencyDots from "../components/ui/ProficiencyDots.jsx";
 import AppointmentForm from "../components/forms/AppointmentForm.jsx";
-import { Phone, Smartphone, MapPin, Download, Navigation } from "lucide-react";
+import { Phone, Mail, MapPin, Download, Navigation } from "lucide-react";
+import BrandIcon from "../components/ui/BrandIcon.jsx";
+import EmailLink from "../components/ui/EmailLink.jsx";
 import { OFFICE } from "../data/profile.js";
 import { VOLUNTEER, LANGUAGES, HOBBY_LIST } from "../data/recognition.js";
 import { whiteRiverMedicalCenter } from "../assets/images/index.js";
-import { CLINIC_PHONE_HREF } from "../data/clinic.js";
+import { CLINIC_MAP_HREF, CLINIC_PHONE_HREF, CLINIC_WHATSAPP_HREF } from "../data/clinic.js";
 
 const MAP_QUERY = encodeURIComponent(`${OFFICE.name}, ${OFFICE.address.join(", ")}`);
 
@@ -34,17 +36,31 @@ export default function Contact() {
                 </div>
               </Reveal>
               <Reveal delay={0.14} className="glass-card flex items-center gap-4 p-5">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-crimson-50 text-crimson-700">
-                  <Smartphone size={18} />
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25D366]/15 text-[#128C7E]">
+                  <BrandIcon name="whatsapp" size={18} />
                 </span>
                 <div>
-                  <h3 className="text-sm font-semibold text-navy-900">Mobile</h3>
+                  <h3 className="text-sm font-semibold text-navy-900">WhatsApp</h3>
                   <a
-                    href={`tel:+1${OFFICE.mobile.replace(/\D/g, "")}`}
+                    href={CLINIC_WHATSAPP_HREF}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-0.5 block text-sm font-medium text-slate-700 hover:text-crimson-600"
                   >
-                    {OFFICE.mobile}
+                    {OFFICE.whatsapp}
                   </a>
+                </div>
+              </Reveal>
+              <Reveal delay={0.16} className="glass-card flex items-center gap-4 p-5 sm:col-span-2">
+                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-crimson-50 text-crimson-700">
+                  <Mail size={18} />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="text-sm font-semibold text-navy-900">Email</h3>
+                  <EmailLink
+                    email={OFFICE.email}
+                    className="mt-0.5 block text-left text-sm font-medium text-slate-700 hover:text-crimson-600"
+                  />
                 </div>
               </Reveal>
               <Reveal delay={0.18} className="sm:col-span-2">
@@ -72,11 +88,11 @@ export default function Contact() {
                 </span>
                 <div>
                   <h3 className="text-sm font-semibold text-navy-900">Office</h3>
-                  <p className="mt-0.5 text-sm text-slate-600">
+                  <a href={CLINIC_MAP_HREF} target="_blank" rel="noopener noreferrer" title="Open in Google Maps" className="mt-0.5 block text-sm text-slate-600 hover:text-crimson-700">
                     {OFFICE.name}
                     <br />
                     {OFFICE.address.join(", ")}
-                  </p>
+                  </a>
                 </div>
               </div>
               <iframe
