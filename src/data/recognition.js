@@ -104,4 +104,4 @@ export const LANGUAGES = [
   { lang: "Hindi", code: "HI", level: "Fair", score: 3 },
 ];
 
-export const HOBBY_LIST = ["Biking", "Chess", "Field hockey", "Car driving", "Bike racing"];
+export const HOBBY_LIST = ["Biking", "Car driving", "Bike racing"];
