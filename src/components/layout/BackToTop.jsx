@@ -6,15 +6,30 @@ export default function BackToTop() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      const isScrolled = window.scrollY > 700;
-      const isNearBottom =
-        window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 320;
-      setVisible(isScrolled && !isNearBottom);
+    // Checked at most once per frame; the page height is cached (reading it on every
+    // scroll event forced a layout recalculation mid-scroll).
+    let pageHeight = document.documentElement.scrollHeight;
+    let frame = 0;
+    const check = () => {
+      frame = 0;
+      const y = window.scrollY;
+      setVisible(y > 700 && window.innerHeight + y < pageHeight - 320);
     };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(check);
+    };
+    const measure = () => {
+      pageHeight = document.documentElement.scrollHeight;
+      onScroll();
+    };
+    const ro = new ResizeObserver(measure);
+    ro.observe(document.body);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      cancelAnimationFrame(frame);
+      ro.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (

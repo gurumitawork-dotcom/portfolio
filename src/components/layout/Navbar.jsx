@@ -52,7 +52,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`border-b border-slate-200/80 bg-white/95 backdrop-blur-xl transition-shadow duration-300 ${
+      className={`border-b border-slate-200/80 bg-white/95 transition-shadow duration-300 ${
         scrolled ? "shadow-[0_14px_32px_-12px_rgba(15,23,42,0.32)]" : ""
       }`}
     >

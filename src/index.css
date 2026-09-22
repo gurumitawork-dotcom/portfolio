@@ -79,6 +79,18 @@
     @apply h-7 w-7 -ml-3.5 -mt-3.5;
   }
 
+  /* Touch devices: backdrop blur on elements that scroll with the page is costly to
+     re-render every frame, and their backgrounds are already semi-opaque. Open dialogs
+     (fixed overlays) keep their blur. */
+  @media (hover: none) and (pointer: coarse) {
+    [class*="backdrop-blur"]:not(.fixed),
+    .glass,
+    .glass-strong {
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+  }
+
   /* Touch ink ripple (TouchRipple.jsx) */
   .touch-ripple-layer {
     @apply pointer-events-none fixed inset-0 z-[70] overflow-hidden;

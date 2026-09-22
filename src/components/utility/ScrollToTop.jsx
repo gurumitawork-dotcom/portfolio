@@ -37,10 +37,19 @@ export default function ScrollToTop() {
     const id = decodeURIComponent(hash.slice(1));
     let tries = 0;
     let timer = 0;
+    const targetFor = (el) => Math.max(0, pageTop(el) + headerOffset());
     const go = () => {
       const el = document.getElementById(id);
       if (el) {
-        smoothScrollTo(Math.max(0, pageTop(el) + headerOffset()));
+        const first = targetFor(el);
+        smoothScrollTo(first);
+        // Images above the section can finish loading after we measured and push it
+        // down; once settled, nudge to the corrected spot — unless the visitor has
+        // already scrolled somewhere else themselves.
+        timer = window.setTimeout(() => {
+          const now = targetFor(el);
+          if (Math.abs(now - first) > 8 && Math.abs(window.scrollY - first) < 60) smoothScrollTo(now);
+        }, 1200);
       } else if (tries++ < 20) {
         timer = window.setTimeout(go, 50); // new page may still be rendering
       }
