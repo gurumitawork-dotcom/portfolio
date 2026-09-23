@@ -202,13 +202,13 @@
   }
 
   .home-hero-visual {
-    @apply relative flex min-h-[420px] flex-col justify-end overflow-hidden sm:min-h-[480px] md:h-[560px] md:min-h-0 lg:h-[600px] xl:h-[640px];
+    @apply relative flex min-h-[380px] flex-col justify-end overflow-hidden sm:min-h-[440px] md:h-[480px] md:min-h-0 lg:h-[500px] xl:h-[520px];
   }
   .home-hero-vector-layer {
     @apply pointer-events-none absolute inset-0 z-0 hidden h-full w-full md:block;
   }
   .home-hero-image {
-    @apply relative z-[1] h-full w-full overflow-hidden bg-gradient-to-b from-[#f3e6e6] to-paper-50;
+    @apply relative z-[1] h-full w-full overflow-hidden;
   }
   @media (min-width: 768px) {
     .home-hero-image {
@@ -217,7 +217,7 @@
     }
   }
   .home-hero-image img {
-    @apply h-full w-full object-contain object-top;
+    @apply h-full w-full object-cover object-[center_6%] md:object-[60%_0%];
   }
   .home-hero-values-band {
     @apply relative z-20 w-full bg-paper-50;
