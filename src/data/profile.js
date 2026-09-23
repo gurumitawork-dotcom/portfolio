@@ -32,7 +32,7 @@ export const OFFICE = {
   mobile: "507-319-2446",
   email: "contact@whrcardiology.com",
   // Number that WhatsApp chats open to (must be registered on WhatsApp)
-  whatsapp: "507-319-2446",
+  whatsapp: "870-262-1600",
 };
 
 export const PRACTICE_FACTS = {

@@ -11,7 +11,7 @@ import {
   Footprints,
 } from "lucide-react";
 import Reveal from "../ui/Reveal.jsx";
-import { maheshClinic } from "../../assets/images/index.js";
+import { heartMini, maheshClinic } from "../../assets/images/index.js";
 import { CLINIC_PHONE_HREF, FEATURED_HIGHLIGHT } from "../../data/clinic.js";
 import { OFFICE } from "../../data/profile.js";
 
@@ -46,8 +46,42 @@ export default function PracticeHighlight() {
           <div className="pointer-events-none absolute -top-32 left-[5%] h-80 w-[500px] rounded-full bg-crimson-600/15 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-32 right-[5%] h-80 w-[500px] rounded-full bg-navy-700/40 blur-3xl" />
 
-          {/* Blueprint Grid Watermark */}
-          <div className="pointer-events-none absolute inset-0 opacity-[0.035] [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px]" />
+          {/* Anatomical heart watermark behind the copy */}
+          <img
+            src={heartMini}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-16 top-1/2 hidden w-[30rem] -translate-y-1/2 select-none opacity-[0.07] mix-blend-screen lg:block xl:w-[34rem]"
+            style={{
+              maskImage: "radial-gradient(ellipse closest-side at center, black 35%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(ellipse closest-side at center, black 35%, transparent 100%)",
+            }}
+          />
+
+          {/* Heartbeat trace drifting across the panel */}
+          <svg
+            className="pointer-events-none absolute inset-x-0 top-[38%] h-32 w-full text-crimson-500/[0.10]"
+            aria-hidden="true"
+            preserveAspectRatio="none"
+            style={{
+              maskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 20%, black 80%, transparent)",
+            }}
+          >
+            <defs>
+              <pattern id="highlightEcg" width="520" height="128" patternUnits="userSpaceOnUse">
+                <path
+                  d="M0 64 H190 l14 0 9 -16 11 46 10 -66 11 84 10 -48 9 16 h16 l11 -9 10 9 H520"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#highlightEcg)" />
+          </svg>
 
           {/* Top Console Bar */}
           <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-6 py-3.5 sm:px-10 sm:py-4 bg-white/[0.02]">

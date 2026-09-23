@@ -3,8 +3,7 @@ import { NavLink, Link, useLocation } from "react-router-dom";
 import { Menu, ChevronDown, Phone } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PRIMARY_NAV, PAGES_NAV, CLINIC_PHONE_HREF } from "../../data/clinic.js";
-import { OFFICE } from "../../data/profile.js";
-import { maheshNav } from "../../assets/images/index.js";
+import { maheshDesk } from "../../assets/images/index.js";
 import MobileMenu from "./MobileMenu.jsx";
 
 function isLinkActive(pathname, to, end) {
@@ -59,7 +58,7 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:px-8">
         <Link to="/" className="group flex min-w-0 items-center gap-2.5 sm:gap-3" onClick={() => setOpen(false)}>
           <span className="relative block h-10 w-10 shrink-0 overflow-hidden rounded-full ring-2 ring-white shadow-glass-sm sm:h-11 sm:w-11">
-            <img src={maheshNav} alt="Mahesh Anantha" className="h-full w-full object-cover object-[center_12%]" />
+            <img src={maheshDesk} alt="Mahesh Anantha" className="h-full w-full object-cover object-[center_22%]" />
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
             <span className="truncate text-[13px] font-semibold text-navy-900 sm:text-base">Mahesh Anantha</span>
@@ -114,9 +113,6 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a href={CLINIC_PHONE_HREF} className="hidden text-sm font-semibold text-navy-900 hover:text-crimson-700 xl:inline">
-            {OFFICE.phone}
-          </a>
           <a href={CLINIC_PHONE_HREF} className="btn-primary !px-5 !py-2.5 !text-[13px]">
             <Phone size={14} /> Book Appointment
           </a>

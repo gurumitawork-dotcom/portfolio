@@ -156,7 +156,7 @@
     @apply relative w-full overflow-hidden;
   }
   .home-hero-stage {
-    @apply relative grid grid-cols-1 items-stretch lg:grid-cols-[minmax(0,38rem)_1fr];
+    @apply relative grid grid-cols-1 items-stretch lg:grid-cols-[minmax(0,1fr)_minmax(0,44rem)];
   }
   .home-hero-copy {
     @apply relative z-10 flex min-w-0 flex-col justify-center py-6 pr-5 sm:py-8 sm:pr-8 lg:py-7 lg:pr-6 xl:py-8;
@@ -202,13 +202,13 @@
   }
 
   .home-hero-visual {
-    @apply relative flex min-h-[380px] flex-col justify-end overflow-hidden sm:min-h-[440px] md:min-h-[480px] lg:min-h-[500px] xl:min-h-[520px];
+    @apply relative flex min-h-[420px] flex-col justify-end overflow-hidden sm:min-h-[480px] md:h-[560px] md:min-h-0 lg:h-[600px] xl:h-[640px];
   }
   .home-hero-vector-layer {
     @apply pointer-events-none absolute inset-0 z-0 hidden h-full w-full md:block;
   }
   .home-hero-image {
-    @apply relative z-[1] h-full w-full overflow-hidden;
+    @apply relative z-[1] h-full w-full overflow-hidden bg-gradient-to-b from-[#f3e6e6] to-paper-50;
   }
   @media (min-width: 768px) {
     .home-hero-image {
@@ -217,7 +217,7 @@
     }
   }
   .home-hero-image img {
-    @apply h-full w-full object-cover object-[center_6%] md:object-[74%_100%];
+    @apply h-full w-full object-contain object-top;
   }
   .home-hero-values-band {
     @apply relative z-20 w-full bg-paper-50;

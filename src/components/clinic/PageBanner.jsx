@@ -3,7 +3,8 @@ import Reveal from "../ui/Reveal.jsx";
 import {
   maheshBanner,
   maheshPortrait,
-  maheshHeart,
+  maheshSitting,
+  maheshDesk,
   maheshClinic,
   maheshMeet,
   cardioRiskGlow,
@@ -19,8 +20,9 @@ import {
 const VISUALS = {
   banner: { src: maheshBanner, alt: "Mahesh Anantha", position: "object-[78%_center]" },
   doctor: { src: maheshPortrait, alt: "Mahesh Anantha", position: "object-[center_18%]" },
-  heart: { src: maheshHeart, alt: "Mahesh Anantha holding an anatomical heart model", position: "object-[center_30%]" },
+  heart: { src: maheshSitting, alt: "Mahesh Anantha, White River Health Cardiology", position: "object-[center_30%]" },
   clinic: { src: maheshClinic, alt: "Mahesh Anantha in his clinic", position: "object-[center_25%]" },
+  desk: { src: maheshDesk, alt: "Mahesh Anantha at his desk with academic credentials", position: "object-[center_20%]" },
   meet: { src: maheshMeet, alt: "Mahesh Anantha", position: "object-[center_20%]" },
   study: { src: maheshNav, alt: "Mahesh Anantha", position: "object-[center_15%]" },
   speaker: { src: maheshHero, alt: "Mahesh Anantha explaining with an anatomical heart model", position: "object-[20%_center]" },

@@ -5,7 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Phone, X } from "lucide-react";
 import { PRIMARY_NAV, PAGES_NAV, CLINIC_PHONE_HREF } from "../../data/clinic.js";
 import { OFFICE } from "../../data/profile.js";
-import { maheshNav } from "../../assets/images/index.js";
+import { maheshDesk } from "../../assets/images/index.js";
 import { getLenis } from "../utility/SmoothScroll.jsx";
 
 const EASE_IN_OUT = [0.65, 0, 0.35, 1];
@@ -69,7 +69,7 @@ export default function MobileMenu({ open, origin, pathname, onClose }) {
           <div className="flex items-center justify-between gap-3 px-4 pb-3 pt-[calc(env(safe-area-inset-top)+0.75rem)] sm:px-8">
             <Link to="/" onClick={onClose} className="flex min-w-0 items-center gap-2.5">
               <span className="block h-10 w-10 shrink-0 overflow-hidden rounded-full ring-2 ring-white/70">
-                <img src={maheshNav} alt="" className="h-full w-full object-cover object-[center_12%]" />
+                <img src={maheshDesk} alt="" className="h-full w-full object-cover object-[center_22%]" />
               </span>
               <span className="flex min-w-0 flex-col leading-tight text-white">
                 <span className="truncate text-[14px] font-semibold">Mahesh Anantha</span>

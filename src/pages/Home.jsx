@@ -23,7 +23,7 @@ import {
   HERO_COPY,
   HERO_CREDENTIALS,
 } from "../data/clinic.js";
-import { maheshHero } from "../assets/images/index.js";
+import { maheshDesk } from "../assets/images/index.js";
 
 const HERO_ROLE_ICONS = [Building2, Shield, GraduationCap, Users, FileBadge];
 
@@ -126,7 +126,7 @@ export default function Home() {
 
               <div className="home-hero-image">
                 <img
-                  src={maheshHero}
+                  src={maheshDesk}
                   alt="Mahesh Anantha holding an anatomical heart model"
                 />
               </div>

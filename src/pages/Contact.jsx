@@ -2,13 +2,13 @@ import ContactBanner from "../components/clinic/ContactBanner.jsx";
 import Reveal from "../components/ui/Reveal.jsx";
 import ProficiencyDots from "../components/ui/ProficiencyDots.jsx";
 import AppointmentForm from "../components/forms/AppointmentForm.jsx";
-import { Phone, Mail, MapPin, Download, Navigation } from "lucide-react";
-import BrandIcon from "../components/ui/BrandIcon.jsx";
+import { Mail, MapPin, Download, Navigation, ShieldCheck, CircleCheck } from "lucide-react";
 import EmailLink from "../components/ui/EmailLink.jsx";
 import { OFFICE } from "../data/profile.js";
 import { VOLUNTEER, LANGUAGES, HOBBY_LIST } from "../data/recognition.js";
+import { LICENSURE } from "../data/training.js";
 import { whiteRiverMedicalCenter } from "../assets/images/index.js";
-import { CLINIC_MAP_HREF, CLINIC_PHONE_HREF, CLINIC_WHATSAPP_HREF } from "../data/clinic.js";
+import { CLINIC_MAP_HREF } from "../data/clinic.js";
 
 const MAP_QUERY = encodeURIComponent(`${OFFICE.name}, ${OFFICE.address.join(", ")}`);
 
@@ -24,33 +24,6 @@ export default function Contact() {
               <AppointmentForm />
             </Reveal>
             <div className="grid gap-4 sm:grid-cols-2">
-              <Reveal delay={0.1} className="glass-card flex items-center gap-4 p-5">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-crimson-50 text-crimson-700">
-                  <Phone size={18} />
-                </span>
-                <div>
-                  <h3 className="text-sm font-semibold text-navy-900">Office phone</h3>
-                  <a href={CLINIC_PHONE_HREF} className="mt-0.5 block text-sm font-medium text-slate-700 hover:text-crimson-600">
-                    {OFFICE.phone}
-                  </a>
-                </div>
-              </Reveal>
-              <Reveal delay={0.14} className="glass-card flex items-center gap-4 p-5">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#25D366]/15 text-[#128C7E]">
-                  <BrandIcon name="whatsapp" size={18} />
-                </span>
-                <div>
-                  <h3 className="text-sm font-semibold text-navy-900">WhatsApp</h3>
-                  <a
-                    href={CLINIC_WHATSAPP_HREF}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-0.5 block text-sm font-medium text-slate-700 hover:text-crimson-600"
-                  >
-                    {OFFICE.whatsapp}
-                  </a>
-                </div>
-              </Reveal>
               <Reveal delay={0.16} className="glass-card flex items-center gap-4 p-5 sm:col-span-2">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-crimson-50 text-crimson-700">
                   <Mail size={18} />
@@ -65,7 +38,7 @@ export default function Contact() {
               </Reveal>
               <Reveal delay={0.18} className="sm:col-span-2">
                 <a
-                  href="/cv/Mahesh_Anantha-Narayanan_Master_CV_2026.docx"
+                  href="/cv/Mahesh_Anantha-Narayanan_Master_CV_2026.pdf"
                   download
                   className="btn-outline w-full justify-center"
                 >
@@ -166,6 +139,21 @@ export default function Contact() {
                   </span>
                 ))}
               </div>
+
+              <h3 className="mt-8 flex items-center gap-2 text-base font-semibold text-navy-900">
+                <ShieldCheck size={16} className="text-crimson-600" /> Licensure &amp; certification
+              </h3>
+              <ul className="mt-3 space-y-2.5">
+                {LICENSURE.map((l) => (
+                  <li key={l.title} className="flex items-baseline justify-between gap-3 text-sm">
+                    <span className="flex items-center gap-2 text-slate-700">
+                      <CircleCheck size={14} className="shrink-0 text-crimson-600/70" />
+                      {l.title}
+                    </span>
+                    {l.date && <span className="whitespace-nowrap text-xs text-slate-500">{l.date}</span>}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           </div>
         </div>

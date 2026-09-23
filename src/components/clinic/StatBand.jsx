@@ -84,8 +84,44 @@ export default function StatBand() {
           <div className="pointer-events-none absolute -top-24 left-[10%] h-64 w-[450px] rounded-full bg-crimson-600/15 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 right-[10%] h-64 w-[450px] rounded-full bg-navy-700/30 blur-3xl" />
           
-          {/* Subtle Grid Pattern */}
-          <div className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:32px_32px]" />
+          {/* ECG paper: fine 10px squares with a bolder 50px block, like a rhythm strip */}
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.16]"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(to right, rgba(255,77,109,0.22) 0 1px, transparent 1px 10px)," +
+                "repeating-linear-gradient(to bottom, rgba(255,77,109,0.22) 0 1px, transparent 1px 10px)," +
+                "repeating-linear-gradient(to right, rgba(255,77,109,0.40) 0 1px, transparent 1px 50px)," +
+                "repeating-linear-gradient(to bottom, rgba(255,77,109,0.40) 0 1px, transparent 1px 50px)",
+              maskImage: "radial-gradient(120% 80% at 50% 40%, black 30%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(120% 80% at 50% 40%, black 30%, transparent 100%)",
+            }}
+          />
+
+          {/* Heartbeat trace running across the console */}
+          <svg
+            className="pointer-events-none absolute inset-x-0 top-1/2 h-24 w-full -translate-y-1/2 text-crimson-500/[0.13]"
+            aria-hidden="true"
+            preserveAspectRatio="none"
+            style={{
+              maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+              WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+            }}
+          >
+            <defs>
+              <pattern id="statEcg" width="420" height="112" patternUnits="userSpaceOnUse">
+                <path
+                  d="M0 56 H150 l12 0 8 -14 10 40 9 -58 10 74 9 -42 8 14 h14 l10 -8 9 8 H420"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#statEcg)" />
+          </svg>
 
           {/* Top Console Header Bar */}
           <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-6 py-3.5 sm:px-8 sm:py-4">

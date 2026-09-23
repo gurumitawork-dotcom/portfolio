@@ -74,7 +74,7 @@ export default function Teaching() {
       <PageBanner
         eyebrow="Teaching & Research"
         title="Building programs, not just publications"
-        visual="meet"
+        visual="desk"
         backdrop="anatomy"
       />
 

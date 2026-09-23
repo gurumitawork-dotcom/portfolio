@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Clock, MapPin, Navigation, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Navigation, Phone } from "lucide-react";
 import Reveal from "../ui/Reveal.jsx";
 import { OFFICE } from "../../data/profile.js";
 import { CLINIC_PHONE_HREF } from "../../data/clinic.js";
@@ -15,6 +15,7 @@ export default function ContactBanner() {
     { icon: Phone, label: "Office phone", value: OFFICE.phone, href: CLINIC_PHONE_HREF },
     { icon: MapPin, label: "Address", value: OFFICE.address.join(", "), href: DIRECTIONS_HREF, external: true },
     { icon: Clock, label: "Office hours", value: "Mon – Fri · 8:00 AM – 5:00 PM" },
+    { icon: Mail, label: "Email", value: OFFICE.email, href: `mailto:${OFFICE.email}` },
   ];
 
   return (

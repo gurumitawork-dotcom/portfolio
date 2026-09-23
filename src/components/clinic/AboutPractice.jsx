@@ -1,6 +1,6 @@
 import { GraduationCap, HeartPulse, MapPin, Phone, ShieldCheck, Stethoscope, Users } from "lucide-react";
 import Reveal from "../ui/Reveal.jsx";
-import { heartEcgGlow, heartHandsCare, heartLightGlow, maheshMeet } from "../../assets/images/index.js";
+import { heartEcgGlow, heartHandsCare, heartLightGlow, maheshStanding } from "../../assets/images/index.js";
 import { CLINIC_MAP_HREF, CLINIC_PHONE_HREF, DOCTOR_SPOTLIGHT } from "../../data/clinic.js";
 import { CURRENT_ROLES, OFFICE, PRACTICE_FACTS } from "../../data/profile.js";
 import { BOARD_CERTIFICATION } from "../../data/training.js";
@@ -14,7 +14,7 @@ export default function AboutPractice() {
         <Reveal className="about-practice-panel">
           <div className="about-practice-side">
             <figure className="about-practice-photo">
-              <img src={maheshMeet} alt="Mahesh Anantha in consultation" />
+              <img src={maheshStanding} alt="Mahesh Anantha at White River Health Cardiology" />
             </figure>
 
             <div className="about-practice-badges">
